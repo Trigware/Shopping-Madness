@@ -138,7 +138,10 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Player" type="Node2D" unique_id=1332566470]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kyqiw"]
+size = Vector2(20, 5.5)
+
+[node name="Player" type="CharacterBody2D" unique_id=1024422057]
 script = ExtResource("1_kyqiw")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1619851445]
@@ -147,3 +150,7 @@ animation = &"walk_up"
 
 [node name="Camera" type="Camera2D" parent="." unique_id=58205281]
 zoom = Vector2(3, 3)
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1546566715]
+position = Vector2(0, 13.75)
+shape = SubResource("RectangleShape2D_kyqiw")

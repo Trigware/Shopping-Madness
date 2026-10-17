@@ -1,8 +1,9 @@
-extends Node2D
+class_name Player
+extends CharacterBody2D
 
 @onready var sprite = $Sprite
 
-const movement_speed: float = 100
+const movement_speed: float = 5000
 var current_movement_dir: MovementDir = MovementDir.None
 
 enum MovementDir {
@@ -22,7 +23,8 @@ func _process(delta: float):
 
 func handle_movement(delta: float):
 	var movement_vec: Vector2 = get_movement_vector()
-	position += movement_vec * movement_speed * delta
+	velocity = movement_vec * movement_speed * delta
+	move_and_slide()
 	if current_movement_dir == MovementDir.None:
 		sprite.stop()
 		return

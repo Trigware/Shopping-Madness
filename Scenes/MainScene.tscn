@@ -5,6 +5,7 @@
 
 [node name="Root" type="Node2D" unique_id=1297904708]
 
-[node name="Room" parent="." unique_id=366738991 instance=ExtResource("1_tr2i4")]
+[node name="Room" parent="." unique_id=366738991 node_paths=PackedStringArray("playerNode") instance=ExtResource("1_tr2i4")]
+playerNode = NodePath("../Player")
 
 [node name="Player" parent="." unique_id=1332566470 instance=ExtResource("1_hpc76")]
