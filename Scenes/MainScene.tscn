@@ -1,14 +1,17 @@
 [gd_scene format=3 uid="uid://ddi6cw6wifooj"]
 
+[ext_resource type="PackedScene" uid="uid://dlgqwnkncux2t" path="res://Scenes/Inventory_UI.tscn" id="1_7rqgy"]
 [ext_resource type="PackedScene" uid="uid://b110ueifp4aiw" path="res://Scenes/Player.tscn" id="1_hpc76"]
 [ext_resource type="PackedScene" uid="uid://7nvg0kvyancw" path="res://Scenes/Room.tscn" id="1_tr2i4"]
-[ext_resource type="PackedScene" uid="uid://dge4qk27h11fg" path="res://Scenes/MoneyUI.tscn" id="3_nhkr4"]
 [ext_resource type="PackedScene" uid="uid://dil1d0a3q828c" path="res://Scenes/GroceryList.tscn" id="3_nhkr4"]
 
 [node name="Root" type="Node2D" unique_id=1297904708]
+
+[node name="InventoryUi" parent="." unique_id=2046312200 instance=ExtResource("1_7rqgy")]
 
 [node name="Room" parent="." unique_id=366738991 node_paths=PackedStringArray("playerNode") instance=ExtResource("1_tr2i4")]
 playerNode = NodePath("../Player")
 
 [node name="Player" parent="." unique_id=1332566470 instance=ExtResource("1_hpc76")]
+
 [node name="MoneyUI" parent="." unique_id=1950658008 instance=ExtResource("3_nhkr4")]
