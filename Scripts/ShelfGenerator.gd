@@ -49,7 +49,7 @@ func generate_shelves():
 		generated_shelf_count += 1
 		if generated_shelf_count >= maximum_generated_shelves: break
 
-const shelf_rect_offset: float = current_room.tile_size * 2
+const shelf_rect_offset: float = current_room.tile_size * 2.5
 
 func is_generated_shelf_valid(shelf_position: Vector2, shelf_size: Vector2) -> bool:
 	var generated_shelf_as_rect: Rect2
