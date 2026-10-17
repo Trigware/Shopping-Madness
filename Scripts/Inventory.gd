@@ -74,7 +74,7 @@ var Inventory: Dictionary = {}
 func _ready() -> void:
 	# Příklad použití po spuštění:
 	# add_item(ItemType.Apple, 3)
-	add_item(ItemType.Bread, 1)
+	# add_item(ItemType.Bread, 1)
 	pass
 
 # Funkce pro přidání předmětu do inventáře
