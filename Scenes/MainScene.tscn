@@ -1,17 +1,10 @@
 [gd_scene format=3 uid="uid://ddi6cw6wifooj"]
 
 [ext_resource type="PackedScene" uid="uid://b110ueifp4aiw" path="res://Scenes/Player.tscn" id="1_hpc76"]
+[ext_resource type="PackedScene" uid="uid://7nvg0kvyancw" path="res://Scenes/Room.tscn" id="1_tr2i4"]
 
 [node name="Root" type="Node2D" unique_id=1297904708]
 
-[node name="Map" type="TileMapLayer" parent="." unique_id=1905176647]
+[node name="Room" parent="." unique_id=366738991 instance=ExtResource("1_tr2i4")]
 
 [node name="Player" parent="." unique_id=1332566470 instance=ExtResource("1_hpc76")]
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-[node name="test" type="Node2D" parent="." unique_id=1700019865]
->>>>>>> 7f15f77e414b21a75e47405ead0d84a84e3cf018
-=======
->>>>>>> 412b3a24a58b6b7b091aaa71c296fe069cf0f827

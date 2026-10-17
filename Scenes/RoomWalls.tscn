@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://da0d75dlrixoi"]
+
+[ext_resource type="Texture2D" uid="uid://e1nq4xhnqb2e" path="res://Textures/Upper Wall/WallEdge.png" id="1_s6gk6"]
+[ext_resource type="Script" uid="uid://dt8xndh12fx73" path="res://Scripts/RoomWalls.gd" id="1_u1egv"]
+[ext_resource type="Texture2D" uid="uid://cnffnlaq1ufpb" path="res://Textures/Upper Wall/WallCenter.png" id="2_u1egv"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rawcb"]
+texture = ExtResource("2_u1egv")
+texture_region_size = Vector2i(24, 34)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ph4ns"]
+tile_size = Vector2i(24, 34)
+sources/0 = SubResource("TileSetAtlasSource_rawcb")
+
+[node name="RoomWalls" type="Node2D" unique_id=270490686]
+script = ExtResource("1_u1egv")
+
+[node name="UpperWall" type="Node2D" parent="." unique_id=298514780]
+
+[node name="LeftEdge" type="Sprite2D" parent="UpperWall" unique_id=1775203236]
+texture = ExtResource("1_s6gk6")
+
+[node name="RightEdge" type="Sprite2D" parent="UpperWall" unique_id=1466196884]
+position = Vector2(108, 0)
+scale = Vector2(-1, 1)
+texture = ExtResource("1_s6gk6")
+
+[node name="CenterWall" type="TileMapLayer" parent="UpperWall" unique_id=126863343]
+position = Vector2(6, -17)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_ph4ns")
