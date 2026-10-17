@@ -3,7 +3,7 @@ extends CanvasLayer
 @onready var label = $ColorRect/Label
 @onready var frame = $ColorRect
 
-const groceries = {
+var groceries: Dictionary[Inventory.ItemType, int] = {
 	Inventory.ItemType.Orange: 4,
 	Inventory.ItemType.Milk: 1,
 	Inventory.ItemType.Bread: 1

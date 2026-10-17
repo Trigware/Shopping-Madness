@@ -9,6 +9,8 @@ var shelf_position: Vector2 = Vector2.ZERO
 
 func _ready():
 	shelf_texture.size = shelf_size
-	bounding_area.shape.size = shelf_size
+	var collider_shape: Shape2D = RectangleShape2D.new()
+	collider_shape.size = shelf_size
+	bounding_area.shape = collider_shape
 	bounding_area.position = shelf_size / 2
 	position = shelf_position
