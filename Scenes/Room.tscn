@@ -1,0 +1,55 @@
+[gd_scene format=4 uid="uid://7nvg0kvyancw"]
+
+[ext_resource type="PackedScene" uid="uid://c0et5rb4hx584" path="res://Scenes/Tiled Diagonals.tscn" id="1_5hpqs"]
+[ext_resource type="Script" uid="uid://dbag15lgay51f" path="res://Scripts/ItemRoom.gd" id="1_a2si3"]
+[ext_resource type="Shader" uid="uid://cq4hrpfm5ov4g" path="res://Shaders/TilingDiagonals.gdshader" id="2_nn86p"]
+[ext_resource type="Texture2D" uid="uid://6bb12ockiotx" path="res://Textures/RestaurantFloorTiles.png" id="3_uj218"]
+[ext_resource type="PackedScene" uid="uid://da0d75dlrixoi" path="res://Scenes/RoomWalls.tscn" id="5_aaq88"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uj218"]
+shader = ExtResource("2_nn86p")
+shader_parameter/pixel_count = Vector2(1000, 1000)
+shader_parameter/texture_size = Vector2(250, 250)
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/diagonal_lines = 4.0
+shader_parameter/gap_size = 0.519
+shader_parameter/pattern_repeated = 17.97221105000016
+shader_parameter/line_color = Vector4(0, 0, 0, 0)
+shader_parameter/gap_color = Vector4(0, 0, 0, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a2si3"]
+texture = ExtResource("3_uj218")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_aaq88"]
+tile_size = Vector2i(24, 24)
+sources/0 = SubResource("TileSetAtlasSource_a2si3")
+
+[node name="Room" type="Node2D" unique_id=366738991]
+script = ExtResource("1_a2si3")
+
+[node name="Background" parent="." unique_id=279757855 instance=ExtResource("1_5hpqs")]
+material = SubResource("ShaderMaterial_uj218")
+offset_right = 10000.0
+offset_bottom = 10000.0
+diagonal_lines = 4.0
+line_color = Color(0.29, 0.29, 0.29, 1)
+value_offset = 0.02
+pattern_speed = 0.15
+
+[node name="Shadow Floor" type="ColorRect" parent="." unique_id=1524688635]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 79.5
+offset_bottom = 55.5
+color = Color(0, 0, 0, 0.7058824)
+
+[node name="Floor" type="TileMapLayer" parent="." unique_id=1899335796]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_aaq88")
+
+[node name="RoomWalls" parent="." unique_id=270490686 instance=ExtResource("5_aaq88")]
