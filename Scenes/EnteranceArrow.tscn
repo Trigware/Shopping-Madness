@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dt0qdh0kgwux6"]
+
+[ext_resource type="Texture2D" uid="uid://caaryt3vbgebu" path="res://Textures/EnteranceArrow.png" id="1_juhdh"]
+[ext_resource type="Script" uid="uid://cejt3hqs66n1o" path="res://Scripts/EnteranceArrow.gd" id="1_lqmat"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juhdh"]
+size = Vector2(62, 46)
+
+[node name="Enterance Arrow" type="Area2D" unique_id=647972197]
+script = ExtResource("1_lqmat")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1563335792]
+texture = ExtResource("1_juhdh")
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=822728571]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_juhdh")

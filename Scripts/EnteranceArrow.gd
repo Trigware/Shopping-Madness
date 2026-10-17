@@ -1,0 +1,2 @@
+class_name EnteranceArrow
+extends Area2D
