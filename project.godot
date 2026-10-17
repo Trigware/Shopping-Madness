@@ -15,6 +15,10 @@ run/main_scene="uid://ddi6cw6wifooj"
 config/features=PackedStringArray("4.6", "Forward Plus")
 <<<<<<<HEADconfig/features=PackedStringArray("4.6", "Forward Plus")
 
+[autoload]
+
+UID="*uid://bsf2nb5y3eavy"
+
 [input]
 
 walk_left={

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://djyxjel01iarv"]
+
+[ext_resource type="Script" uid="uid://csggubpmgdg03" path="res://Scripts/Shelf.gd" id="1_x3wpo"]
+[ext_resource type="Texture2D" uid="uid://bpb1ldjw1gyla" path="res://Textures/Shelf.png" id="2_ciy52"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ciy52"]
+size = Vector2(40, 40)
+
+[node name="Shelf" type="Node2D" unique_id=1126319967]
+script = ExtResource("1_x3wpo")
+
+[node name="Texture" type="NinePatchRect" parent="." unique_id=1353592985]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_ciy52")
+
+[node name="Bounding Area" type="StaticBody2D" parent="." unique_id=443616675]
+
+[node name="Collider" type="CollisionShape2D" parent="Bounding Area" unique_id=1212278511]
+shape = SubResource("RectangleShape2D_ciy52")
