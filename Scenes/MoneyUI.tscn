@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dge4qk27h11fg"]
+
+[ext_resource type="Texture2D" uid="uid://bpawwudwe2j2a" path="res://Textures/penizky.webp" id="1_8h53v"]
+[ext_resource type="Script" uid="uid://be1hlqsrubhqj" path="res://Scripts/money_script.gd" id="1_c810d"]
+
+[node name="MoneyUI" type="CanvasLayer" unique_id=1950658008]
+script = ExtResource("1_c810d")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1916712919]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -98.0
+offset_bottom = 64.0
+grow_horizontal = 0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+offset_transform_enabled = true
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=549634728]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=930553141]
+layout_mode = 2
+texture = ExtResource("1_8h53v")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=245100938]
+layout_mode = 2
+text = "0"
