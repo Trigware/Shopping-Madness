@@ -27,7 +27,6 @@ func handle_movement(delta: float):
 		sprite.stop()
 		return
 	
-	print(MovementDir.find_key(current_movement_dir))
 	var current_animation_name: String = movement_to_animation_map[current_movement_dir]
 	sprite.play(current_animation_name)
 

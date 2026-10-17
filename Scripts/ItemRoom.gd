@@ -7,6 +7,7 @@ const last_texture_coordinate: Vector2i = Vector2i(1, 1)
 @onready var background_diagonals: TiledDiagonals = $Background
 @onready var shadow_floor: ColorRect = $"Shadow Floor"
 @onready var room_walls: RoomWalls = $RoomWalls
+@onready var bounding_area: Area2D = $"Bounding Area"
 
 const diagonals_size: int = 10000
 const floor_shadow_offset: int = 5
@@ -16,6 +17,7 @@ func _ready():
 	center_background()
 	handle_floor_shadow()
 	room_walls.create_wall(default_room_size)
+	setup_bounding_collision_boxes()
 
 func setup_floor():
 	room_floor.clear()
@@ -37,3 +39,9 @@ func handle_floor_shadow():
 	var shadow_offset: Vector2 = floor_shadow_offset * Vector2.ONE
 	shadow_floor.size = default_room_size * tile_size
 	shadow_floor.position = shadow_offset
+
+const box_side_count: int = 4
+
+func setup_bounding_collision_boxes():
+	for i in range(box_side_count):
+		pass
