@@ -51,3 +51,4 @@ func get_movement_direction(movement_vec: Vector2) -> MovementDir:
 
 func testing():
 	print("Hello, world!")
+	print("AAA")
