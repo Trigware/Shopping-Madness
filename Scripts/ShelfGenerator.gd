@@ -3,18 +3,22 @@ extends Node2D
 
 @export var current_room: Room
 
-const shelf_smaller_size: float = 20
-const shelf_length_range: Vector2 = Vector2(60, 90)
+const shelf_smaller_size: float = 25
+const shelf_length_range: Vector2 = Vector2(3, 4)
 var placed_shelves_rect_arr: Array[Rect2] = []
 
 func _ready():
 	generate_shelves()
 
-func add_shelf(shelf_size: Vector2, shelf_pos: Vector2):
+func add_shelf(shelf_size: Vector2, shelf_pos: Vector2, items_in_shelf: int, is_horizontal: bool):
 	var added_shelf: Shelf = UID.SCN_SHELF.instantiate()
 	added_shelf.shelf_position = shelf_pos
 	added_shelf.shelf_size = shelf_size
+	added_shelf.shelf_room_type = current_room.current_room_type
+	added_shelf.items_count_on_shelves = items_in_shelf
+	added_shelf.is_horizonzal = is_horizontal
 	add_child(added_shelf)
+	added_shelf.items_root.position = Vector2.ONE * shelf_smaller_size / 2.0
 	
 	var shelf_as_rect: Rect2
 	shelf_as_rect.size = shelf_size
@@ -24,6 +28,7 @@ func add_shelf(shelf_size: Vector2, shelf_pos: Vector2):
 const generation_padding_size: float = 0.2
 const max_generation_count: int = 300
 const maximum_generated_shelves: int = 4
+const food_tile_size: int = 45
 
 func generate_shelves():
 	var room_size_pixels: Vector2 = current_room.default_room_size * current_room.tile_size
@@ -32,7 +37,8 @@ func generate_shelves():
 	var generated_shelf_count: int = 0
 	
 	for i in range(max_generation_count):
-		var shelf_length: float = randf_range(shelf_length_range.x, shelf_length_range.y)
+		var items_in_shelf_count: int = randi_range(shelf_length_range.x, shelf_length_range.y)
+		var shelf_length: float = food_tile_size * Shelf.shelf_item_scale * items_in_shelf_count
 		var is_shelf_horizontal: bool = randf_range(0, 1) < 0.5
 		var shelf_size: Vector2 = Vector2(shelf_smaller_size, shelf_length)
 		if is_shelf_horizontal: shelf_size = Vector2(shelf_size.y, shelf_size.x)
@@ -45,7 +51,7 @@ func generate_shelves():
 		var is_valid: bool = is_generated_shelf_valid(generated_position, shelf_size)
 		if not is_valid: continue
 		
-		add_shelf(shelf_size, generated_position)
+		add_shelf(shelf_size, generated_position, items_in_shelf_count, is_shelf_horizontal)
 		generated_shelf_count += 1
 		if generated_shelf_count >= maximum_generated_shelves: break
 

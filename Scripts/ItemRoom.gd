@@ -3,6 +3,7 @@ extends Node2D
 
 const default_room_size: Vector2 = Vector2(10, 6)
 const last_texture_coordinate: Vector2i = Vector2i(1, 1)
+var current_room_type: Inventory.RoomType = Inventory.RoomType.Pastry
 
 @onready var room_floor = $Floor
 @onready var background_diagonals: TiledDiagonals = $Background

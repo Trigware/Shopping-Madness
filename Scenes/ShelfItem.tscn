@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bsfoe4t18hntd"]
+
+[ext_resource type="Texture2D" uid="uid://b4wamv5yrs8fm" path="res://Textures/PastrySpritesheet.png" id="1_3n6s1"]
+[ext_resource type="Script" uid="uid://fvuq8ctp76ro" path="res://Scripts/ShelfItem.gd" id="1_7mqlc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3n6s1"]
+size = Vector2(45, 45)
+
+[node name="ShelfItem" type="Area2D" unique_id=359838478]
+script = ExtResource("1_7mqlc")
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1867492963]
+shape = SubResource("RectangleShape2D_3n6s1")
+debug_color = Color(0, 0.7, 0.15166669, 0.41960785)
+
+[node name="Texture" type="Sprite2D" parent="." unique_id=1173660692]
+texture = ExtResource("1_3n6s1")
+hframes = 5

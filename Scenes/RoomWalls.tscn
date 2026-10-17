@@ -15,6 +15,9 @@ texture_region_size = Vector2i(24, 34)
 tile_size = Vector2i(24, 34)
 sources/0 = SubResource("TileSetAtlasSource_rawcb")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ph4ns"]
+size = Vector2(27.5, 36)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1022v"]
 shader = ExtResource("5_ph4ns")
 
@@ -39,6 +42,13 @@ tile_set = SubResource("TileSet_ph4ns")
 [node name="Enterance" type="Sprite2D" parent="UpperWall" unique_id=1079241947]
 position = Vector2(0, 5)
 texture = ExtResource("4_rawcb")
+
+[node name="Enterance Area" type="Area2D" parent="UpperWall/Enterance" unique_id=1828068843]
+position = Vector2(0, -5)
+
+[node name="Collider" type="CollisionShape2D" parent="UpperWall/Enterance/Enterance Area" unique_id=1859687448]
+position = Vector2(0.25, 8)
+shape = SubResource("RectangleShape2D_ph4ns")
 
 [node name="WallShadow" type="ColorRect" parent="UpperWall" unique_id=134904314]
 material = SubResource("ShaderMaterial_1022v")

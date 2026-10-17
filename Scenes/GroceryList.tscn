@@ -25,6 +25,7 @@ Test2b"
 label_settings = SubResource("LabelSettings_k8wm2")
 
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=908600574]
+visible = false
 offset_left = 911.0
 offset_top = 1.0
 offset_right = 1151.0

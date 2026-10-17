@@ -10,7 +10,7 @@ size = Vector2(40, 40)
 script = ExtResource("1_x3wpo")
 
 [node name="Texture" type="NinePatchRect" parent="." unique_id=1353592985]
-offset_right = 32.0
+offset_right = 21.0
 offset_bottom = 86.0
 texture = ExtResource("2_ciy52")
 patch_margin_left = 17
@@ -22,3 +22,6 @@ patch_margin_bottom = 7
 
 [node name="Collider" type="CollisionShape2D" parent="Bounding Area" unique_id=1212278511]
 shape = SubResource("RectangleShape2D_ciy52")
+
+[node name="Items" type="Node2D" parent="." unique_id=2056567881]
+position = Vector2(15, 15)

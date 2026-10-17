@@ -4,6 +4,7 @@ extends Node
 signal inv_update
 
 enum ItemType {
+	None,
 	Orange,
 	Pear,
 	Apple,
@@ -24,16 +25,20 @@ enum ItemType {
 	Brocoli,
 	Pepper,
 	Lentils,
-	Tuna,
-	Salmon,
+	Tuna, Salmon, 
 	Spaghetti,
-	Doughnut,
-	Bun,
-	Baguette,
-	Croissant,
-	Roll,
-	Bread,
+	
+	Doughnut, Bun, Baguette, Croissant, Roll, Bread,
 	Banana
+}
+
+enum RoomType {
+	None, Pastry, Meat, Fruits, Dairy
+}
+
+const available_foods_in_room_map: Dictionary[RoomType, Array] = {
+	RoomType.Pastry: [ItemType.Baguette, ItemType.Roll, ItemType.Bun, ItemType.Doughnut, ItemType.Croissant],
+	RoomType.Meat: []
 }
 
 const itemToNameMap: Dictionary = {
