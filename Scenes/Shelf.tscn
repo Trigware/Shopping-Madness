@@ -10,9 +10,13 @@ size = Vector2(40, 40)
 script = ExtResource("1_x3wpo")
 
 [node name="Texture" type="NinePatchRect" parent="." unique_id=1353592985]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 32.0
+offset_bottom = 86.0
 texture = ExtResource("2_ciy52")
+patch_margin_left = 17
+patch_margin_top = 9
+patch_margin_right = 4
+patch_margin_bottom = 7
 
 [node name="Bounding Area" type="StaticBody2D" parent="." unique_id=443616675]
 
