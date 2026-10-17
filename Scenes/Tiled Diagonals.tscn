@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c0et5rb4hx584"]
+
+[ext_resource type="Material" uid="uid://du22gaoqrlry7" path="res://Shaders/TiledDiagonals.tres" id="1_c04io"]
+[ext_resource type="Script" uid="uid://rbq0xydnvtfu" path="res://Scripts/TiledDiagonals.gd" id="2_c04io"]
+
+[node name="Tiled Diagonals" type="ColorRect" unique_id=279757855]
+material = ExtResource("1_c04io")
+offset_right = 111.7932
+offset_bottom = 51.393578
+rotation = -5.410683e-05
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_c04io")
+diagonal_lines = 19.075
+gap_size = 0.519
+line_color = Color(0.48, 0.24959998, 0.24959998, 1)
+pixel_count = Vector2i(1024, 1024)
+texture_scale = Vector2(1, 1)
+value_offset = 0.085
+pattern_speed = 0.365
