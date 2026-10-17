@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 
 Inventory="*uid://bv8dcqpna861p"
 UID="*uid://bsf2nb5y3eavy"
+GameManager="*uid://dg5cvyl4xj6iw"
 
 [global_group]
 

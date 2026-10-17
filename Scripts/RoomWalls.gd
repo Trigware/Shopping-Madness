@@ -9,6 +9,7 @@ extends Node2D
 @onready var upper_wall_enterance = $UpperWall/Enterance
 @onready var wall_shadow = $UpperWall/WallShadow
 @onready var enterance_area: Area2D = $"UpperWall/Enterance/Enterance Area"
+@onready var exit_arrows_root: Node2D = $"Exit Arrows Root"
 
 var room_size: Vector2 = Vector2.ZERO
 const edge_wall_size: Vector2 = Vector2(13, 34)
@@ -34,4 +35,4 @@ func create_upper_wall():
 
 func body_entered_to_enterance(body: Node2D):
 	if not body.is_in_group("Player"): return
-	print("!!!")
+	print("ENTER ROOM")
