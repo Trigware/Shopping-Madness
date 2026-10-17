@@ -48,3 +48,6 @@ func get_movement_direction(movement_vec: Vector2) -> MovementDir:
 	
 	var vertical_dir_index: int = 0 if movement_vec.y == -1 else 1
 	return possible_vertical_directions[vertical_dir_index]
+
+func testing():
+	pass

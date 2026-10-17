@@ -7,5 +7,3 @@
 [node name="Map" type="TileMapLayer" parent="." unique_id=1905176647]
 
 [node name="Player" parent="." unique_id=1332566470 instance=ExtResource("1_hpc76")]
-
-[node name="test" type="Node2D" parent="." unique_id=1700019865]
