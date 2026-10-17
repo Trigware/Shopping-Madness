@@ -1,4 +1,5 @@
-extends Node2D
+class_name Player
+extends CharacterBody2D
 
 @onready var sprite = $Sprite
 
@@ -22,12 +23,12 @@ func _process(delta: float):
 
 func handle_movement(delta: float):
 	var movement_vec: Vector2 = get_movement_vector()
-	position += movement_vec * movement_speed * delta
+	velocity = movement_vec * movement_speed
+	move_and_slide()
 	if current_movement_dir == MovementDir.None:
 		sprite.stop()
 		return
 	
-	print(MovementDir.find_key(current_movement_dir))
 	var current_animation_name: String = movement_to_animation_map[current_movement_dir]
 	sprite.play(current_animation_name)
 

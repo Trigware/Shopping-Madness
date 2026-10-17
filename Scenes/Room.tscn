@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://cq4hrpfm5ov4g" path="res://Shaders/TilingDiagonals.gdshader" id="2_nn86p"]
 [ext_resource type="Texture2D" uid="uid://6bb12ockiotx" path="res://Textures/RestaurantFloorTiles.png" id="3_uj218"]
 [ext_resource type="PackedScene" uid="uid://da0d75dlrixoi" path="res://Scenes/RoomWalls.tscn" id="5_aaq88"]
+[ext_resource type="Script" uid="uid://yk555h2fci6r" path="res://Scripts/ShelfGenerator.gd" id="7_xebr5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uj218"]
 shader = ExtResource("2_nn86p")
@@ -13,7 +14,7 @@ shader_parameter/texture_size = Vector2(250, 250)
 shader_parameter/texture_scale = Vector2(1, 1)
 shader_parameter/diagonal_lines = 4.0
 shader_parameter/gap_size = 0.519
-shader_parameter/pattern_repeated = 17.97221105000016
+shader_parameter/pattern_repeated = 92.19909818328738
 shader_parameter/line_color = Vector4(0, 0, 0, 0)
 shader_parameter/gap_color = Vector4(0, 0, 0, 0)
 
@@ -53,3 +54,9 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAA
 tile_set = SubResource("TileSet_aaq88")
 
 [node name="RoomWalls" parent="." unique_id=270490686 instance=ExtResource("5_aaq88")]
+
+[node name="Bounding Area" type="StaticBody2D" parent="." unique_id=924359517]
+
+[node name="Shelf Generator" type="Node2D" parent="." unique_id=1186309061 node_paths=PackedStringArray("current_room")]
+script = ExtResource("7_xebr5")
+current_room = NodePath("..")

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dil1d0a3q828c"]
+
+[ext_resource type="Script" uid="uid://ve501flyfkk7" path="res://Scripts/GroceryList.gd" id="1_k8wm2"]
+[ext_resource type="FontFile" uid="uid://dil43sbwcg2uc" path="res://Fonts/Leafcross Font.png" id="1_wwshn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k8wm2"]
+font = ExtResource("1_wwshn")
+font_color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=152937536]
+script = ExtResource("1_k8wm2")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=445255557]
+offset_right = 253.0
+offset_bottom = 331.0
+color = Color(0.72, 0.72, 0.72, 0.49803922)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=578787921]
+layout_mode = 0
+offset_right = 266.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Test
+Test2b"
+label_settings = SubResource("LabelSettings_k8wm2")
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=908600574]
+offset_left = 911.0
+offset_top = 1.0
+offset_right = 1151.0
+offset_bottom = 333.0
+color = Color(0.93233335, 1, 0.71000004, 0.49803922)
