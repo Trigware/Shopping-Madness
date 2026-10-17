@@ -1,3 +1,4 @@
+class_name Room
 extends Node2D
 
 const default_room_size: Vector2 = Vector2(10, 6)
