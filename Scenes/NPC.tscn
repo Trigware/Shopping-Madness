@@ -25,7 +25,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xs5w8")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Drobasek",
 "speed": 5.0
 }, {
@@ -33,7 +33,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7fgga")
 }],
-"loop": true,
+"loop": 1,
 "name": &"GermanTeacher",
 "speed": 5.0
 }, {
@@ -41,7 +41,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fo5tq")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Grznar",
 "speed": 5.0
 }, {
@@ -49,16 +49,19 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_17t5b")
 }],
-"loop": false,
 "name": &"Mrazek",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdvfm"]
-size = Vector2(20, 31)
+size = Vector2(20, 17)
 
-[node name="NPC" type="Area2D" unique_id=1426028892]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifhs4"]
+size = Vector2(25, 19)
+
+[node name="NPC" type="CharacterBody2D" unique_id=323015229]
 script = ExtResource("1_fo5tq")
+is_chaser = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=2042416558]
 position = Vector2(3, 0)
@@ -69,3 +72,9 @@ animation = &"Mrazek"
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=234100968]
 position = Vector2(0, 19.5)
 shape = SubResource("RectangleShape2D_tdvfm")
+
+[node name="hitbox_interaction" type="Area2D" parent="." unique_id=1321592997]
+position = Vector2(0, 19.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_interaction" unique_id=335780284]
+shape = SubResource("RectangleShape2D_ifhs4")

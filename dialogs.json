@@ -58,16 +58,12 @@
 	"Mrazek": {
 		"display-name": "Pan Mrázek",
 		"ambient": [
-			{ "text": "Krev drůbeže očistí naše hříchy...", "audio": "mrazek_ambient_01.mp3" },
-			{ "text": "V Alpách vědí, jak se předává cena!", "audio": "mrazek_ambient_02.mp3" },
-			{ "text": "Kozí krev, žabí mozečky, myší střeva... kam přesunuli ten kozí sýr?", "audio": "mrazek_ambient_03.mp3" },
-			{ "text": "Porota v Dolomitech byla beztak podplacená.", "audio": "mrazek_ambient_04.mp3" },
-			{ "text": "Tady to hučí jak v kryptě.", "audio": "mrazek_ambient_05.mp3" },
-			{ "text": "Oltář postavím tady hned vedle pečiva.", "audio": "mrazek_ambient_06.mp3" },
-			{ "text": "Zase změnili rozložení regálů! Ilumináti.", "audio": "mrazek_ambient_07.mp3" },
-			{ "text": "Musím najít černé svíčky.", "audio": "mrazek_ambient_08.mp3" },
-			{ "text": "Ten chleba má úplně zkaženou auru.", "audio": "mrazek_ambient_09.mp3" },
-			{ "text": "Mrtvá husa... ta by mohla stačit.", "audio": "mrazek_ambient_10.mp3" }
+			{ "text": "V Alpách vědí, jak se předává cena!", "audio": "mrazek_ambient_01.mp3" },
+			{ "text": "Kozí krev, žabí mozečky, myší střeva! kam přesunuli ten kozí sýr?", "audio": "mrazek_ambient_02.mp3" },
+			{ "text": "Porota v Dolomitech byla beztak podplacená.", "audio": "mrazek_ambient_03.mp3" },
+			{ "text": "Oltář postavím tady hned vedle pečiva.", "audio": "mrazek_ambient_04.mp3" },
+			{ "text": "Zase změnili rozložení regálů! Ilumináti.", "audio": "mrazek_ambient_05.mp3" },
+			{ "text": "Mrtvá husa... ta by mohla stačit.", "audio": "mrazek_ambient_06.mp3" }
 		],
 		"interact": {
 			"start": {
@@ -102,12 +98,7 @@
 			{ "text": "Warum ist das so teuer?", "audio": "nemcinarka_ambient_02.mp3" },
 			{ "text": "Mládež neumí ani vyčasovat 'kaufen'...", "audio": "nemcinarka_ambient_03.mp3" },
 			{ "text": "Eins, zwei, Polizei... kde je ochranka?", "audio": "nemcinarka_ambient_04.mp3" },
-			{ "text": "Tady se vůbec nedá mluvit hochdeutsch.", "audio": "nemcinarka_ambient_05.mp3" },
-			{ "text": "Die Kartoffel je dneska v akci.", "audio": "nemcinarka_ambient_06.mp3" },
-			{ "text": "Das ist eine absolute Katastrophe.", "audio": "nemcinarka_ambient_07.mp3" },
-			{ "text": "Proč tu nemají nápisy i v němčině?", "audio": "nemcinarka_ambient_08.mp3" },
-			{ "text": "Zase taková fronta... unglaublich.", "audio": "nemcinarka_ambient_09.mp3" },
-			{ "text": "V Drážďanech by tohle nikdy nedovolili.", "audio": "nemcinarka_ambient_10.mp3" }
+			{ "text": "V Drážďanech by tohle nikdy nedovolili.", "audio": "nemcinarka_ambient_05.mp3" }
 		],
 		"interact": {
 			"start": {
