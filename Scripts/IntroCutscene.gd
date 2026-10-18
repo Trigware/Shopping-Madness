@@ -76,12 +76,30 @@ func handle_mouse_interaction():
 		return
 	if hover_over_decline: handle_phone_decline()
 
-func handle_phone_answer():
-	ringtone.stop()
-	await handle_tweening(1, 1)
-
 func handle_phone_decline():
 	ringtone.stop()
 	await handle_tweening(1, 1)
 	await get_tree().create_timer(0.5).timeout
 	handle_phone_tweens()
+
+var phone_dialog: Array = [
+	TextSystem.TextSegment.ctor("Konečně jsi mi to zvedl! Pokouším se tě dovolat od už od půl pátý!"),
+	TextSystem.TextSegment.ctor("Ty jsi si nepřipravil tu zatracenou svačinu..."),
+	TextSystem.TextSegment.ctor("Já ti to říkám ti to celý večer a ty to stejně neuděláš!"),
+	TextSystem.ChoiceSegment.ctor({
+		"Promiň mami, jdu si to hned připravit.": [
+			TextSystem.TextSegment.ctor("No tak to doufám - udělej to dřív než řeknu tátovi ať se o tebe postárá!")
+		],
+		"Kašlu ti na to!": [
+			TextSystem.TextSegment.ctor("No co si to dovoluješ, mě takhle oslovovat - ještě jednou mi něco takovýho řekneš přísahám..."),
+			TextSystem.TextSegment.ctor("PŘÍSAHÁM! ŽE TY TVOJE MINECRAFTY UŽ NIKDY NEUVIDÍŠ!")
+		]
+	}),
+	TextSystem.TextSegment.ctor("Dělej než my vyčerpáš všechny moje kredity...")
+]
+
+func handle_phone_answer():
+	ringtone.stop()
+	await handle_tweening(1, 1)
+	await get_tree().create_timer(0.5).timeout
+	TextSystem.render_dialog_arr(phone_dialog)

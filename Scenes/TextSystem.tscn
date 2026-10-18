@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://7kvfo01hkxig" path="res://Textures/TextBox.png" id="2_7t2e0"]
 [ext_resource type="FontFile" uid="uid://dil43sbwcg2uc" path="res://Fonts/Leafcross Font.png" id="3_rbnke"]
 [ext_resource type="Texture2D" uid="uid://uji7haiml64l" path="res://Textures/DialogProgressIndicator.png" id="4_o07hf"]
+[ext_resource type="AudioStream" uid="uid://bjtblikkw2im3" path="res://Audio/Default.mp3" id="5_k2o14"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_o07hf"]
 line_spacing = 0.0
@@ -104,3 +105,6 @@ text = "Choice D"
 label_settings = SubResource("LabelSettings_e32vq")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Talking" type="AudioStreamPlayer" parent="." unique_id=215244844]
+stream = ExtResource("5_k2o14")

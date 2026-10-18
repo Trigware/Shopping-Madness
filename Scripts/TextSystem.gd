@@ -20,8 +20,9 @@ var is_interacting: bool = false
 @onready var text_box_contents: Label = $TextBox/Contents
 @onready var progress_indicator: TextureRect = $"TextBox/Progress Indicator"
 @onready var choicer_root: Control = $TextBox/Choicer
+@onready var talking_audio: AudioStreamPlayer = $Talking
 
-const wait_between_glyphs: float = 0.05
+const wait_between_glyphs: float = 0.035
 
 @abstract class DialogSegment: pass
 
@@ -94,6 +95,7 @@ func render_text_segment(current_segment: TextSegment):
 		var visible_ratio: float = (i + 1) / segment_text_length
 		text_box_contents.visible_ratio = visible_ratio
 		await get_tree().create_timer(wait_between_glyphs).timeout
+		talking_audio.play()
 	
 	progress_indicator.show()
 	await wait_until_progress()
