@@ -1,12 +1,11 @@
 extends Area2D
 
-var npc_dialog: Array = [
-	TextSystem.TextSegment.ctor("Hello, world!"),
-	TextSystem.ChoiceSegment.ctor({
-		"A": [ TextSystem.TextSegment.ctor("Choice A") ],
-		"B": [ TextSystem.TextSegment.ctor("Choice B") ],
-	})
-]
+var npc_dialog: Array = []
+
+func _ready():
+	await get_tree().process_frame
+	npc_dialog = DialogRepresentation.available_character_dialogs[TextSystem.SpeakingCharacter.Drobasek].dialog_tree
+	print(npc_dialog)
 
 func _process(_delta):
 	var can_interact: bool = check_if_can_interact()

@@ -1,9 +1,10 @@
 class_name Room
 extends Node2D
 
-const default_room_size: Vector2 = Vector2(10, 6)
+const minimum_room_size: Vector2 = Vector2(8, 5)
+const maximum_room_size: Vector2 = Vector2(15, 12)
+var generated_room_size: Vector2 = Vector2.ZERO
 const last_texture_coordinate: Vector2i = Vector2i(1, 1)
-var current_room_type: Inventory.RoomType = Inventory.RoomType.Pastry
 
 @onready var room_floor = $Floor
 @onready var background_diagonals: TiledDiagonals = $Background
@@ -18,20 +19,28 @@ const diagonals_size: int = 10000
 const floor_shadow_offset: int = 5
 
 func _ready():
+	generate_room_size()
 	center_player()
 	setup_floor()
 	center_background()
 	handle_floor_shadow()
-	room_walls.create_wall(default_room_size)
+	room_walls.create_wall(generated_room_size)
 	setup_bounding_collision_boxes()
 
+func generate_room_size():
+	var generated_width: int = randi_range(minimum_room_size.x, maximum_room_size.x)
+	var width_possible_portion: float = inverse_lerp(minimum_room_size.x, maximum_room_size.x, generated_width)
+	var generated_height: int = lerp(minimum_room_size.y, maximum_room_size.y, width_possible_portion)
+	generated_room_size = Vector2(generated_width, generated_height)
+	if room_manager.current_room.has_loaded_before: generated_room_size = room_manager.current_room.room_size
+
 func center_player():
-	var room_size_in_px: Vector2 = default_room_size * tile_size
+	var room_size_in_px: Vector2 = generated_room_size * tile_size
 	player_node.position = room_size_in_px / 2
 
 func setup_floor():
 	room_floor.clear()
-	for x in range(default_room_size.x): for y in range(default_room_size.y):
+	for x in range(generated_room_size.x): for y in range(generated_room_size.y):
 		var current_position: Vector2i = Vector2i(x, y)
 		var texture_coordinate: Vector2i = Vector2i(
 			randi_range(0, last_texture_coordinate.x),
@@ -47,14 +56,14 @@ const tile_size: int = 24
 
 func handle_floor_shadow():
 	var shadow_offset: Vector2 = floor_shadow_offset * Vector2.ONE
-	shadow_floor.size = default_room_size * tile_size
+	shadow_floor.size = generated_room_size * tile_size
 	shadow_floor.position = shadow_offset
 
 const box_side_count: int = 4
 const box_collider_size: int = 20
 
 func setup_bounding_collision_boxes():
-	var room_total_size: Vector2 = default_room_size * tile_size
+	var room_total_size: Vector2 = generated_room_size * tile_size
 	
 	for i in range(box_side_count):
 		var current_collision_shape: CollisionShape2D = CollisionShape2D.new()

@@ -19,7 +19,7 @@ func add_shelf(shelf_size: Vector2, shelf_pos: Vector2, items_in_shelf: int, is_
 	var added_shelf: Shelf = UID.SCN_SHELF.instantiate()
 	added_shelf.shelf_position = shelf_pos
 	added_shelf.shelf_size = shelf_size
-	added_shelf.shelf_room_type = current_room.current_room_type
+	added_shelf.shelf_room_type = current_room.room_manager.current_room.room_type
 	added_shelf.items_count_on_shelves = items_in_shelf
 	added_shelf.is_horizonzal = is_horizontal
 	add_child(added_shelf)
@@ -37,7 +37,8 @@ const maximum_generated_shelves: int = 8
 const food_tile_size: int = 45
 
 func generate_shelves():
-	var room_size_pixels: Vector2 = current_room.default_room_size * current_room.tile_size
+	await get_tree().process_frame
+	var room_size_pixels: Vector2 = current_room.generated_room_size * current_room.tile_size
 	var smaller_room_size_px: float = min(room_size_pixels.x, room_size_pixels.y)
 	var top_left_min = Vector2.ONE * smaller_room_size_px * generation_padding_size
 	var generated_shelf_count: int = 0

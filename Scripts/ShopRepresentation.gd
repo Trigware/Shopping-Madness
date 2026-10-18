@@ -12,6 +12,7 @@ class ShopRoom:
 	var linked_rooms: Dictionary[Player.MovementDir, ShopRoom] = {}
 	var room_type: Inventory.RoomType = Inventory.RoomType.None
 	var shelf_info_arr: Array[Shelf.ShelfInfo] = []
+	var room_size: Vector2 = Vector2.ZERO
 	var has_loaded_before: bool = false
 	
 	static func from_tree(rooms_tree: Dictionary) -> ShopRoom:

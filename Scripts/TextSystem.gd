@@ -3,7 +3,15 @@ extends CanvasLayer
 
 enum SpeakingCharacter {
 	None,
-	Testing
+	Drobasek,
+	Mrazek,
+	GermanTeacher,
+	Grznar
+}
+
+enum ActionType {
+	Unknown,
+	GiveMoney
 }
 
 var is_interacting: bool = false
@@ -20,6 +28,7 @@ const wait_between_glyphs: float = 0.05
 class TextSegment extends DialogSegment:
 	var segment_as_text: String = ""
 	var speaking_character: SpeakingCharacter = SpeakingCharacter.None
+	var segment_audio: String = ""
 	
 	static func ctor(segment_content: String, speaker: SpeakingCharacter = SpeakingCharacter.None) -> TextSegment:
 		var result: TextSegment = TextSegment.new()
@@ -34,6 +43,9 @@ class ChoiceSegment extends DialogSegment:
 		var result: ChoiceSegment = ChoiceSegment.new()
 		result.possible_choices = choices
 		return result
+
+class ActionSegment extends DialogSegment:
+	var action_type: ActionType = ActionType.Unknown
 
 func render_dialog_arr(dialog_arr: Array):
 	TextSystem.is_interacting = true

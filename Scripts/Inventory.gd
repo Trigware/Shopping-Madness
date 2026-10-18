@@ -5,40 +5,26 @@ signal inv_update
 
 enum ItemType {
 	None,
-	Orange,
-	Pear,
-	Apple,
-	Lemon,
-	Grapes,
-	Melon,
-	Onion,
-	Butter,
-	Milk,
-	OrangeJuice,
-	MagnesiaRed,
-	Salt,
-	Sugar,
-	BakedBeans,
+	Orange, Pear, Apple, Lemon, Grapes, Melon, Banana,
+	Onion, Brocoli, 	Pepper, 	Lentils, BakedBeans,
+	Butter, Milk, Cheese,
+	OrangeJuice, MagnesiaRed,
+	Salt, Sugar,
 	Oatmeal,
 	Flour,
 	Rice,
-	Brocoli,
-	Pepper,
-	Lentils,
-	Tuna, Salmon, 
-	Spaghetti,
+	Tuna, Salmon, Meat,
 	
 	Doughnut, Bun, Baguette, Croissant, Roll, Bread,
-	Banana
 }
 
 enum RoomType {
-	None, Vegetables, Pastry, Meat, Fruits, Dairy, Drinks, SmokedMeat, CashRegister, Spice
+	None, Vegetables, Pastry, Meat, Fruits, Dairy, Drinks, Spice, CashRegister
 }
 
 const available_foods_in_room_map: Dictionary[RoomType, Array] = {
 	RoomType.Pastry: [ItemType.Baguette, ItemType.Roll, ItemType.Bun, ItemType.Doughnut, ItemType.Croissant],
-	RoomType.Meat: []
+	RoomType.Vegetables: []
 }
 
 const itemToNameMap: Dictionary = {
@@ -64,14 +50,14 @@ const itemToNameMap: Dictionary = {
 	ItemType.Lentils: "Čočka",
 	ItemType.Tuna: "Tuňák",
 	ItemType.Salmon: "Losos",
-	ItemType.Spaghetti: "Špagety",
 	ItemType.Doughnut: "Kobliha",
 	ItemType.Bun: "Houska",
 	ItemType.Baguette: "Bageta",
 	ItemType.Croissant: "Croissant",
 	ItemType.Roll: "Rohlík",
 	ItemType.Bread: "Chléb",
-	ItemType.Banana: "Banán"
+	ItemType.Banana: "Banán",
+	ItemType.Meat: "Maso"
 }
 
 var Inventory: Dictionary = {}

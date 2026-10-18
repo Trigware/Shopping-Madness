@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dlgqwnkncux2t"]
+[gd_scene format=3 uid="uid://cajxjha03fifn"]
 
-[ext_resource type="Script" uid="uid://b3k1jygxnm5pe" path="res://Scenes/InventoryUi.gd" id="1_12hnx"]
+[ext_resource type="Script" path="res://Scenes/InventoryUi.gd" id="1_12hnx"]
 [ext_resource type="Texture2D" uid="uid://dujl76deoyttq" path="res://Textures/Inv_UI_Paper.png" id="2_rypqr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rypqr"]

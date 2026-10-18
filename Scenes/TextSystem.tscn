@@ -44,9 +44,10 @@ texture = ExtResource("2_7t2e0")
 layout_mode = 0
 offset_left = 16.0
 offset_top = 18.0
-offset_right = 272.0
-offset_bottom = 71.0
+offset_right = 237.0
+offset_bottom = 57.0
 label_settings = SubResource("LabelSettings_o07hf")
+autowrap_mode = 3
 
 [node name="Progress Indicator" type="TextureRect" parent="TextBox" unique_id=1980659892]
 layout_mode = 0
