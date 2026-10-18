@@ -1,25 +1,59 @@
-extends Area2D
+extends CharacterBody2D
 
 @onready var npc_sprite = $Sprite
+@onready var interaction_area = $"hitbox_interaction" 
+@onready var Collider = $"Collider" 
 
-var npc_dialog: Array = []
-var character_type: TextSystem.SpeakingCharacter = TextSystem.SpeakingCharacter.None
+@export var speed: float = 100.0
+@export var is_chaser: bool = false 
+@export var character_type: TextSystem.SpeakingCharacter = TextSystem.SpeakingCharacter.None
 
-func _ready():
+var npc_dialog = []
+var has_triggered_dialog: bool = false 
+
+func _ready() -> void:
 	await get_tree().process_frame
-	npc_dialog = DialogRepresentation.available_character_dialogs[character_type].dialog_tree
-	npc_sprite.animation = TextSystem.SpeakingCharacter.find_key(character_type)
-
-func _process(_delta):
-	var can_interact: bool = check_if_can_interact()
-	if can_interact: TextSystem.render_dialog_arr(npc_dialog)
-
-func check_if_can_interact() -> bool:
-	var interaction_button_pressed: bool = Input.is_action_just_pressed("item_pickup")
-	if TextSystem.is_interacting or not interaction_button_pressed: return false
 	
-	var overlapping_bodies: Array = get_overlapping_bodies()
-	for body: Node2D in overlapping_bodies:
-		var is_player: bool = body.is_in_group("Player")
-		if is_player: return true
-	return false
+	if DialogRepresentation.available_character_dialogs.has(character_type):
+		npc_dialog = DialogRepresentation.available_character_dialogs[character_type].dialog_tree
+		
+	var char_name = TextSystem.SpeakingCharacter.find_key(character_type)
+	if char_name and npc_sprite:
+		npc_sprite.animation = char_name
+
+func _physics_process(delta: float) -> void:
+	#pronasledovani
+	if is_chaser and not TextSystem.is_interacting:
+		var player = get_tree().get_first_node_in_group("Player")
+		if player != null:
+			var dir = global_position.direction_to(player.global_position)
+			velocity = dir * speed
+			move_and_slide()
+	else:
+		#zastaveni rychlosti pri dialogu
+		velocity = Vector2.ZERO
+	
+	if interaction_area == null or not interaction_area.monitoring:
+		return
+		
+		#spusteni iterakce
+	var bodies = interaction_area.get_overlapping_bodies()
+	var touching_player = false
+	
+	for b in bodies:
+		if b.is_in_group("Player"):
+			touching_player = true
+			break
+			
+	if touching_player:
+		if not has_triggered_dialog and not TextSystem.is_interacting and not npc_dialog.is_empty():
+			has_triggered_dialog = true
+			
+			is_chaser = false 
+			interaction_area.monitoring = false
+			Collider = false
+				
+			
+			TextSystem.render_dialog_arr(npc_dialog)
+	else:
+		has_triggered_dialog = false
