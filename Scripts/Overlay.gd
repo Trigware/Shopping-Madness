@@ -12,10 +12,15 @@ func tween_alpha(final_alpha: float, in_out_duration: float = transition_in_out_
 		set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	return tween
 
+var is_transition_locked: bool = false
+
 func transition(on_hidden: Callable,
 	in_out_duration: float = transition_in_out_duration, wait_duration: float = transition_wait_duration
 ):
+	if is_transition_locked: return
+	is_transition_locked = true
 	await tween_alpha(1, in_out_duration).finished
 	await get_tree().create_timer(wait_duration).timeout
 	on_hidden.call()
 	await tween_alpha(0, in_out_duration).finished
+	is_transition_locked = false

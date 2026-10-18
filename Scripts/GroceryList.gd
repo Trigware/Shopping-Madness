@@ -33,7 +33,7 @@ func generate_grocery_list():
 const line_height: float = 40
 
 func _ready():
-	#generate_grocery_list()
+	generate_grocery_list()
 	update_grocery_list()
 	Inventory.inv_update.connect(update_grocery_list)
 

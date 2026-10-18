@@ -59,12 +59,14 @@ patch_margin_left = 18
 patch_margin_top = 17
 patch_margin_right = 18
 patch_margin_bottom = 17
+metadata/_edit_use_anchors_ = true
 
 [node name="Button Text" type="Label" parent="Logo Root/Play Button" unique_id=829482039]
 offset_right = 176.0
 offset_bottom = 53.0
 theme_override_font_sizes/font_size = 32
-text = "PLAY"
+text = "HRAJ"
 label_settings = SubResource("LabelSettings_emot1")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dixjvrfdcsc25"]
+
+[ext_resource type="Texture2D" uid="uid://7kvfo01hkxig" path="res://Textures/TextBox.png" id="1_kmdoq"]
+[ext_resource type="FontFile" uid="uid://dil43sbwcg2uc" path="res://Fonts/Leafcross Font.png" id="2_ejjct"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r4vfo"]
+font = ExtResource("2_ejjct")
+font_size = 32
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 0)
+
+[node name="Title Screen Button" type="Node2D" unique_id=136132830]
+
+[node name="Button Texture" type="NinePatchRect" parent="." unique_id=138442679]
+offset_right = 176.0
+offset_bottom = 53.0
+texture = ExtResource("1_kmdoq")
+patch_margin_left = 18
+patch_margin_top = 17
+patch_margin_right = 18
+patch_margin_bottom = 17
+metadata/_edit_use_anchors_ = true
+
+[node name="Button Text" type="Label" parent="." unique_id=781952505]
+offset_right = 176.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 32
+text = "NA TITLE"
+label_settings = SubResource("LabelSettings_r4vfo")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

@@ -20,7 +20,6 @@ var is_interacting: bool = false
 @onready var text_box_contents: Label = $TextBox/Contents
 @onready var progress_indicator: TextureRect = $"TextBox/Progress Indicator"
 @onready var choicer_root: Control = $TextBox/Choicer
-@onready var talking_audio: AudioStreamPlayer = $Talking
 
 const wait_between_glyphs: float = 0.035
 
@@ -28,13 +27,12 @@ const wait_between_glyphs: float = 0.035
 
 class TextSegment extends DialogSegment:
 	var segment_as_text: String = ""
-	var speaking_character: SpeakingCharacter = SpeakingCharacter.None
 	var segment_audio: String = ""
 	
-	static func ctor(segment_content: String, speaker: SpeakingCharacter = SpeakingCharacter.None) -> TextSegment:
+	static func ctor(segment_content: String, audio_path: String = "") -> TextSegment:
 		var result: TextSegment = TextSegment.new()
 		result.segment_as_text = segment_content
-		result.speaking_character = speaker
+		result.segment_audio = audio_path
 		return result
 
 class ChoiceSegment extends DialogSegment:
@@ -91,11 +89,18 @@ func position_textbox():
 const interpunction_symbols = ["!", ".", "-", ",", ":", "…"]
 const interpunction_delay: float = 0.5
 
+const voice_clips_path: String = "res://Audio/Voiceclips/"
+const default_voice_clip_extension: String = ".mp3"
+
 func render_text_segment(current_segment: TextSegment):
 	var segment_as_text: String = current_segment.segment_as_text
 	text_box_contents.text = segment_as_text
 	var segment_text_length: float = segment_as_text.length()
 	choicer_root.hide()
+	if current_segment.segment_audio != "":
+		var voice_clip_path: String = voice_clips_path + current_segment.segment_audio + default_voice_clip_extension
+		var loaded_voiceclip: AudioStream = load(voice_clip_path)
+		Audio.play(loaded_voiceclip)
 	
 	for i in range(segment_text_length):
 		will_skip_next_time = false
@@ -112,7 +117,8 @@ func render_text_segment(current_segment: TextSegment):
 			text_box_contents.visible_ratio = 1
 			break
 		
-		talking_audio.play()
+		var play_default_audio: bool = current_segment.segment_audio == ""
+		if play_default_audio: Audio.play(UID.SFX_DEFAULT_TALK)
 	
 	progress_indicator.show()
 	await wait_until_progress()

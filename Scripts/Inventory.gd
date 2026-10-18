@@ -135,7 +135,7 @@ func add_item(item: ItemType, amount: int = 1) -> void:
 		return
 		
 	Inventory[item] = Inventory.get(item, 0) + amount
-	print(ItemType.find_key(item))
+	Audio.play(UID.SFX_ITEM_OBTAINTED, -3, 0.2)
 	inv_update.emit()
 
 func get_item_count(item_type: ItemType) -> int:

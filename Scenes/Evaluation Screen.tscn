@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://qrqn3ur8ko4c"]
 
 [ext_resource type="Script" uid="uid://b5uqe1j3bcjdv" path="res://Scripts/EvaluationScreen.gd" id="1_7jaqa"]
+[ext_resource type="FontFile" uid="uid://dil43sbwcg2uc" path="res://Fonts/Leafcross Font.png" id="2_667bj"]
+[ext_resource type="PackedScene" uid="uid://dixjvrfdcsc25" path="res://Scenes/TitleScreenButton.tscn" id="3_waqjw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_waqjw"]
+font = ExtResource("2_667bj")
+font_size = 90
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="Evaluation Screen" type="Node2D" unique_id=687245486]
 script = ExtResource("1_7jaqa")
@@ -9,3 +16,24 @@ script = ExtResource("1_7jaqa")
 offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0, 0, 0, 1)
+
+[node name="Evaluation Title" type="Label" parent="." unique_id=260053879]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "-- VYHODNOCOVÁNÍ --"
+label_settings = SubResource("LabelSettings_waqjw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Evaluation Factors" type="RichTextLabel" parent="Evaluation Title" unique_id=335824038]
+modulate = Color(0.8, 0.8, 0.8, 1)
+layout_mode = 0
+offset_top = 110.0
+offset_right = 1153.0
+offset_bottom = 320.0
+theme_override_fonts/normal_font = ExtResource("2_667bj")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+horizontal_alignment = 1
+
+[node name="Title Screen Button" parent="Evaluation Title" unique_id=136132830 instance=ExtResource("3_waqjw")]

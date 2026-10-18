@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dflklduvktta5"
+path="res://.godot/imported/Item Obtained.mp3-3b0a3430da99d457d1aedd70e4cc9598.mp3str"
+
+[deps]
+
+source_file="res://Audio/Item Obtained.mp3"
+dest_files=["res://.godot/imported/Item Obtained.mp3-3b0a3430da99d457d1aedd70e4cc9598.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
