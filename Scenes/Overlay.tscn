@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cowe2ynwgc2r8"]
+
+[ext_resource type="Script" uid="uid://b1d6mtge48v0a" path="res://Scripts/Overlay.gd" id="1_5tm8m"]
+
+[node name="Overlay" type="CanvasLayer" unique_id=76528507]
+script = ExtResource("1_5tm8m")
+
+[node name="Overlay Rect" type="ColorRect" parent="." unique_id=1095543069]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)

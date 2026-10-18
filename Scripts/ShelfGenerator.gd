@@ -27,7 +27,7 @@ func add_shelf(shelf_size: Vector2, shelf_pos: Vector2, items_in_shelf: int, is_
 
 const generation_padding_size: float = 0.2
 const max_generation_count: int = 300
-const maximum_generated_shelves: int = 4
+const maximum_generated_shelves: int = 8
 const food_tile_size: int = 45
 
 func generate_shelves():

@@ -11,6 +11,7 @@ var current_room_type: Inventory.RoomType = Inventory.RoomType.Pastry
 @onready var room_walls: RoomWalls = $RoomWalls
 @onready var bounding_area: StaticBody2D = $"Bounding Area"
 @export var playerNode: Player
+@export var room_manager: RoomManager
 
 const diagonals_size: int = 10000
 const floor_shadow_offset: int = 5

@@ -33,7 +33,7 @@ enum ItemType {
 }
 
 enum RoomType {
-	None, Pastry, Meat, Fruits, Dairy
+	None, Vegetables, Pastry, Meat, Fruits, Dairy, Drinks, SmokedMeat, CashRegister, Spice
 }
 
 const available_foods_in_room_map: Dictionary[RoomType, Array] = {
