@@ -6,10 +6,9 @@ extends Node2D
 var displayed_items: Array = []
 
 func _ready() -> void:
-	# Na začátku hry inventář schováme
 	panel.visible = false
 	
-	# Napojíme se na globální Autoload "Inventory" a jeho signál "inv_update"
+	# Napojeni na global inv
 	Inventory.inv_update.connect(refresh_ui)
 	
 	# Dvojklik na položku v inventáři
@@ -18,19 +17,18 @@ func _ready() -> void:
 	refresh_ui()
 
 func _input(event: InputEvent) -> void:
-	# Otevírání a zavírání klávesou I nebo Tab
+	# Otevírání a zavírání invu pres I nebo Tab
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_I or event.keycode == KEY_TAB:
 			panel.visible = not panel.visible
-			get_viewport().set_input_as_handled() # Zabrání tomu, aby Tab dělal bílý rámeček
+			get_viewport().set_input_as_handled() # Zabraneni, zasraneho bileho ramecku
 		
-		# TESTOVÁNÍ: Zmáčkni K pro přidání jablka a Magnesie
+		# test
 		elif event.keycode == KEY_K:
 			Inventory.add_item(Inventory.ItemType.Apple, 1)
 			Inventory.add_item(Inventory.ItemType.MagnesiaRed, 2)
 			Inventory.print_inventory()
 
-# Překreslí ItemList podle dat v Inventory.gd
 func refresh_ui() -> void:
 	item_list.clear()
 	displayed_items.clear()
@@ -44,7 +42,7 @@ func refresh_ui() -> void:
 		item_list.add_item(display_text)
 		displayed_items.append(item_type)
 
-# Dvojklik na položku v UI odebere 1 kus
+# Dvojklik na odebrani/pouziti itemu v invu
 func _on_item_activated(index: int) -> void:
 	var item_type = displayed_items[index]
 	var item_name = Inventory.itemToNameMap.get(item_type, "")

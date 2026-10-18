@@ -41,6 +41,7 @@ func add_shelf_items(items_arr: Array = []):
 		shelf_item.scale = Vector2.ONE * shelf_item_scale
 		shelf_item.position = current_position
 		shelf_item.available_items_in_shelf = available_items
+		shelf_item.room_type = shelf_room_type
 		shelf_item.item_index = i
 		shelf_item.index_offset = index_offset
 		shelf_item.is_horizontal_shelf = is_horizonzal

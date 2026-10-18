@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://cq4hrpfm5ov4g" path="res://Shaders/TilingDiagonals.gdshader" id="2_nn86p"]
 [ext_resource type="Texture2D" uid="uid://6bb12ockiotx" path="res://Textures/RestaurantFloorTiles.png" id="3_uj218"]
 [ext_resource type="PackedScene" uid="uid://da0d75dlrixoi" path="res://Scenes/RoomWalls.tscn" id="5_aaq88"]
-[ext_resource type="PackedScene" path="res://Scenes/MoneyUI.tscn" id="7_si31g"]
+[ext_resource type="PackedScene" uid="uid://dge4qk27h11fg" path="res://Scenes/MoneyUI.tscn" id="7_si31g"]
 [ext_resource type="Script" uid="uid://yk555h2fci6r" path="res://Scripts/ShelfGenerator.gd" id="7_xebr5"]
 [ext_resource type="PackedScene" uid="uid://bj2al7pxtphwp" path="res://Scenes/NPC.tscn" id="8_si31g"]
 
@@ -16,7 +16,7 @@ shader_parameter/texture_size = Vector2(250, 250)
 shader_parameter/texture_scale = Vector2(1, 1)
 shader_parameter/diagonal_lines = 4.0
 shader_parameter/gap_size = 0.519
-shader_parameter/pattern_repeated = 67.90250714997623
+shader_parameter/pattern_repeated = 184.89453052132225
 shader_parameter/line_color = Vector4(0, 0, 0, 0)
 shader_parameter/gap_color = Vector4(0, 0, 0, 0)
 
