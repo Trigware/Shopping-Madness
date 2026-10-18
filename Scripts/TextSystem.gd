@@ -91,6 +91,12 @@ const interpunction_delay: float = 0.5
 
 const voice_clips_path: String = "res://Audio/Voiceclips/"
 
+const default_textbox_size: Vector2 = Vector2(220, 42)
+const default_font_size: int = 12
+const minimum_font_size: int = 5
+
+var current_font_size: int = default_font_size
+
 func render_text_segment(current_segment: TextSegment):
 	var segment_as_text: String = current_segment.segment_as_text
 	text_box_contents.text = segment_as_text
@@ -100,6 +106,9 @@ func render_text_segment(current_segment: TextSegment):
 		var voice_clip_path: String = voice_clips_path + current_segment.segment_audio
 		var loaded_voiceclip: AudioStream = load(voice_clip_path)
 		Audio.play(loaded_voiceclip)
+	
+	current_font_size = default_font_size
+	text_box_contents.label_settings.font_size = current_font_size
 	
 	for i in range(segment_text_length):
 		will_skip_next_time = false
@@ -114,6 +123,7 @@ func render_text_segment(current_segment: TextSegment):
 		await get_tree().create_timer(glyph_wait_duration).timeout
 		if will_skip_next_time:
 			text_box_contents.visible_ratio = 1
+			resize_font_to_fit()
 			break
 		
 		var play_default_audio: bool = current_segment.segment_audio == ""
@@ -122,6 +132,13 @@ func render_text_segment(current_segment: TextSegment):
 	progress_indicator.show()
 	await wait_until_progress()
 	progress_indicator.hide()
+
+func resize_font_to_fit():
+	var textbox_minimum_height: float = text_box_contents.get_minimum_size().y
+	while textbox_minimum_height > default_textbox_size.y and current_font_size >= minimum_font_size:
+		textbox_minimum_height = text_box_contents.get_minimum_size().y
+		current_font_size -= 1
+		text_box_contents.label_settings.font_size = current_font_size
 
 func wait_until_progress():
 	while true:
