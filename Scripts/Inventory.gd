@@ -6,10 +6,11 @@ signal inv_update
 enum ItemType {
 	None,
 	Orange, Pear, Apple, Lemon, Grapes, Melon, Banana,
-	Onion, Brocoli, 	Pepper, 	Lentils, BakedBeans,
+	Onion, Brocoli, 	Pepper, 	Lentils,
 	Butter, Milk, Cheese,
 	OrangeJuice, MagnesiaRed,
 	Salt, Sugar,
+	BakedBeans,
 	Oatmeal,
 	Flour,
 	Rice,
@@ -19,7 +20,7 @@ enum ItemType {
 }
 
 enum RoomType {
-	None, Vegetables, Pastry, Meat, Fruits, Dairy, Drinks, Spice, CashRegister
+	None, Vegetables, Pastry, Meat, Fruits, Dairy, Drinks, SmokedMeat, Spice, CashRegister
 }
 
 const available_foods_in_room_map: Dictionary[RoomType, Array] = {

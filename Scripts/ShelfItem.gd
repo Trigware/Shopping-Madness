@@ -16,6 +16,7 @@ const smaller_axis_collider_multiplier: float = 0.75
 func _ready():
 	var current_tile_x: int = (item_index + index_offset) % (available_items_in_shelf.size() - 1)
 	texture.frame_coords.x = current_tile_x
+	if current_tile_x > available_items_in_shelf.size() - 1: return
 	item_type = available_items_in_shelf[current_tile_x]
 	
 	var shape_axis_index: int = 1 if is_horizontal_shelf else 0
