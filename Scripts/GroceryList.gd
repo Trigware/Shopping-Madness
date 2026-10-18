@@ -6,7 +6,7 @@ extends CanvasLayer
 
 var groceries_map: Dictionary[Inventory.ItemType, int]
 
-const generated_items_count_range: Vector2 = Vector2(1, 3)
+const generated_items_count_range: Vector2 = Vector2(1, 2)
 const generated_item_count_per_room: Vector2 = Vector2(1, 2)
 const generation_limit: int = 500
 
@@ -26,12 +26,15 @@ func generate_grocery_list():
 			groceries_map[generated_item] = item_count
 			items_generated_this_room += 1
 			if items_generated_this_room >= item_count_to_generate: break
-	print(groceries_map)
 
 const line_height: float = 40
 
 func _ready():
 	generate_grocery_list()
+	update_grocery_list()
+	Inventory.inv_update.connect(update_grocery_list)
+
+func update_grocery_list():
 	var grocery_list_as_text: String = get_as_text()
 	grocery_label.text = grocery_list_as_text
 	
@@ -63,6 +66,8 @@ func get_as_text() -> String:
 	for grocery_item: Inventory.ItemType in groceries_map.keys():
 		var grocery_item_count: int = groceries_map[grocery_item]
 		var current_item_as_str: String = Inventory.itemToNameMap.get(grocery_item, "Unknown")
-		var current_line_as_str: String = " - " + current_item_as_str + " (?/" + str(grocery_item_count) + ")\n"
+		var current_item_count: int = Inventory.get_item_count(grocery_item)
+		var current_line_as_str: String = " - " + current_item_as_str + " (" + str(current_item_count) +\
+			 "/" + str(grocery_item_count) + ")\n"
 		result += current_line_as_str
 	return result

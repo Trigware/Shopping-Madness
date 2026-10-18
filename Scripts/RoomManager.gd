@@ -3,8 +3,9 @@ extends Node2D
 
 var current_room: ShopRepresentation.ShopRoom = ShopRepresentation.shop_enterance
 var previously_came_from_dir: Player.MovementDir = Player.MovementDir.Up
-@onready var room_scene: Room = $Room
+@onready var room_scene = $Room
 @onready var player_node: Player = $Player
+@onready var grocery_list: CanvasLayer = $GroceryList
 var room_switching_locked: bool = false
 
 func switch_to_next(destination_room: ShopRepresentation.ShopRoom):

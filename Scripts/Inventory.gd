@@ -65,8 +65,8 @@ var item_textures_map: Dictionary = {
 # rozdeleni na mistnosti
 var available_foods_in_room_map: Dictionary[RoomType, Array] = {
 	RoomType.Vegetables: [
-		ItemType.Orange, ItemType.Pear, ItemType.Apple, ItemType.Lemon, 
-		ItemType.Grapes, ItemType.Melon, ItemType.Onion, ItemType.Brocoli
+		ItemType.Orange, ItemType.Brocoli, ItemType.Onion, ItemType.Lemon, 
+		ItemType.Grapes, ItemType.Pear, ItemType.Apple, ItemType.Melon
 	],
 	RoomType.Pastry: [
 		ItemType.Baguette, ItemType.Roll, ItemType.Bun, ItemType.Doughnut, ItemType.Croissant
@@ -135,7 +135,12 @@ func add_item(item: ItemType, amount: int = 1) -> void:
 		return
 		
 	Inventory[item] = Inventory.get(item, 0) + amount
+	print(ItemType.find_key(item))
 	inv_update.emit()
+
+func get_item_count(item_type: ItemType) -> int:
+	if not Inventory.has(item_type): return 0
+	return Inventory[item_type]
 	
 func remove_item(item: ItemType, amount: int = 1) -> void:
 	if amount <= 0 or not Inventory.has(item):

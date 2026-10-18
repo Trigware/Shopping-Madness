@@ -9,7 +9,6 @@ var available_items_in_shelf: Array = []
 var room_type: Inventory.RoomType = Inventory.RoomType.None
 var is_horizontal_shelf: bool = false
 var item_index: int = 0
-var index_offset: int = 0
 var item_type: Inventory.ItemType = Inventory.ItemType.None
 
 const collider_scale_multiplier: float = 3
@@ -20,7 +19,7 @@ func _ready():
 		return
 		
 	# 1. Vybereme konkrétní předmět pro toto políčko poličky:
-	var current_tile_x: int = (item_index + index_offset) % available_items_in_shelf.size()
+	var current_tile_x: int = item_index % available_items_in_shelf.size()
 	item_type = available_items_in_shelf[current_tile_x]
 	
 	# 2. Nastavení textury podle toho, jestli jde o samostatný soubor, nebo starý spritesheet:
