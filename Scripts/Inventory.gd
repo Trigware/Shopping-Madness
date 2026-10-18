@@ -25,7 +25,6 @@ enum RoomType {
 
 const available_foods_in_room_map: Dictionary[RoomType, Array] = {
 	RoomType.Pastry: [ItemType.Baguette, ItemType.Roll, ItemType.Bun, ItemType.Doughnut, ItemType.Croissant],
-	RoomType.Vegetables: []
 }
 
 const itemToNameMap: Dictionary = {

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Shopping Madness"
-run/main_scene="uid://ca7e8lufy7ljd"
+run/main_scene="uid://ddi6cw6wifooj"
 config/features=PackedStringArray("4.6", "Forward Plus")
 <<<<<<<HEADconfig/features=PackedStringArray("4.6", "Forward Plus")
 

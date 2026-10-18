@@ -30,7 +30,10 @@ func _ready():
 
 func add_shelf_items(items_arr: Array = []):
 	var current_position: Vector2 = Vector2.ZERO
-	var available_items: Array = Inventory.available_foods_in_room_map[shelf_room_type]
+	var available_items: Array = []
+	if Inventory.available_foods_in_room_map.has(shelf_room_type):
+		available_items = Inventory.available_foods_in_room_map[shelf_room_type]
+	else: push_error("ROOM IS WITHOUT ITEMS!")
 	var index_offset: int = randi_range(0, available_items.size() - 1)
 	
 	for i in range(items_count_on_shelves):
