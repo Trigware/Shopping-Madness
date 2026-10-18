@@ -24,6 +24,7 @@ GameManager="*uid://dg5cvyl4xj6iw"
 Overlay="*uid://cowe2ynwgc2r8"
 DialogRepresentation="*uid://cdrkjwn36nfhd"
 Audio="*uid://p4jg2moq86b4"
+EvaluationData="*uid://d3q0wrgao5r2g"
 
 [global_group]
 
@@ -65,6 +66,11 @@ item_pickup={
 mouse_click={
 "deadzone": 0.2,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+skip_text={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":88,"key_label":0,"unicode":120,"location":0,"echo":false,"script":null)
 ]
 }
 

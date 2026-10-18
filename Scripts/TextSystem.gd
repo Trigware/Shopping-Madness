@@ -72,8 +72,11 @@ func _ready():
 	initial_textbox_size = text_box.size
 	text_box.hide()
 
+var will_skip_next_time: bool = false
+
 func _process(_delta):
 	position_textbox()
+	if Input.is_action_pressed("skip_text"): will_skip_next_time = true
 
 func position_textbox():
 	var window_size: Vector2 = DisplayServer.window_get_size()
@@ -95,6 +98,7 @@ func render_text_segment(current_segment: TextSegment):
 	choicer_root.hide()
 	
 	for i in range(segment_text_length):
+		will_skip_next_time = false
 		var visible_ratio: float = (i + 1) / segment_text_length
 		var ch: String = segment_as_text[i]
 		text_box_contents.visible_ratio = visible_ratio
@@ -104,6 +108,10 @@ func render_text_segment(current_segment: TextSegment):
 		var glyph_wait_duration: float = wait_between_glyphs
 		if is_interpunction_symbol and not is_last_ch: glyph_wait_duration += interpunction_delay
 		await get_tree().create_timer(glyph_wait_duration).timeout
+		if will_skip_next_time:
+			text_box_contents.visible_ratio = 1
+			break
+		
 		talking_audio.play()
 	
 	progress_indicator.show()

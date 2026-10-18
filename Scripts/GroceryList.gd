@@ -1,10 +1,13 @@
+class_name GloceryList
 extends CanvasLayer
 
 @onready var grocery_root = $"Grocery Root"
 @onready var grocery_label = $"Grocery Root/Groceries"
 @onready var grocery_body = $"Grocery Root/Grocery Body"
 
-var groceries_map: Dictionary[Inventory.ItemType, int]
+var groceries_map: Dictionary[Inventory.ItemType, int] = {
+	Inventory.ItemType.Lemon: 1
+}
 
 const generated_items_count_range: Vector2 = Vector2(1, 2)
 const generated_item_count_per_room: Vector2 = Vector2(1, 2)
@@ -30,7 +33,7 @@ func generate_grocery_list():
 const line_height: float = 40
 
 func _ready():
-	generate_grocery_list()
+	#generate_grocery_list()
 	update_grocery_list()
 	Inventory.inv_update.connect(update_grocery_list)
 
@@ -41,6 +44,15 @@ func update_grocery_list():
 	var line_count: int = groceries_map.size()
 	var grocery_height: float = (line_count + 1) * line_height
 	grocery_body.size.y = grocery_height
+
+func is_complete():
+	for current_item: Inventory.ItemType in groceries_map.keys():
+		var count_in_inventory: int = Inventory.get_item_count(current_item)
+		var required_item_count: int = groceries_map[current_item]
+		var item_requirement_fulfilled: bool = count_in_inventory >= required_item_count
+		if not item_requirement_fulfilled: return false
+	
+	return true
 
 const grocery_header_size: Vector2 = Vector2(570, 110)
 const grocery_list_size_multiplier: float = 0.4

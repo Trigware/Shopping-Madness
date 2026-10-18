@@ -39,7 +39,7 @@ class ShopRoom:
 static var shop_enterance: ShopRoom = ShopRoom.from_tree({
 	Inventory.RoomType.Vegetables: {
 		Player.MovementDir.Up: Inventory.RoomType.Meat,
-		Player.MovementDir.Right: {Inventory.RoomType.Pastry: {
+		Player.MovementDir.Right: {Inventory.RoomType.CashRegister: {
 			Player.MovementDir.Right: Inventory.RoomType.SmokedMeat,
 			Player.MovementDir.Up: {Inventory.RoomType.Dairy: {
 				Player.MovementDir.Up: {Inventory.RoomType.Drinks: {

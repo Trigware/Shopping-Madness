@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://qrqn3ur8ko4c"]
+
+[ext_resource type="Script" uid="uid://b5uqe1j3bcjdv" path="res://Scripts/EvaluationScreen.gd" id="1_7jaqa"]
+
+[node name="Evaluation Screen" type="Node2D" unique_id=687245486]
+script = ExtResource("1_7jaqa")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1767529422]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
