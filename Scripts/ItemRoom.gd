@@ -12,6 +12,7 @@ var current_room_type: Inventory.RoomType = Inventory.RoomType.Pastry
 @onready var bounding_area: StaticBody2D = $"Bounding Area"
 @export var player_node: Player
 @export var room_manager: RoomManager
+@onready var shelf_generator: ShelfGenerator = $"Shelf Generator"
 
 const diagonals_size: int = 10000
 const floor_shadow_offset: int = 5
@@ -77,3 +78,11 @@ func setup_bounding_collision_boxes():
 		current_collision_shape.shape = current_shape
 		current_collision_shape.position = shape_position
 		bounding_area.add_child(current_collision_shape)
+
+func get_all_shelf_info() -> Array[Shelf.ShelfInfo]:
+	var shelf_info_arr: Array[Shelf.ShelfInfo] = []
+	var all_shelves: Array = shelf_generator.get_children()
+	for current_shelf: Shelf in all_shelves:
+		var shelf_info: Shelf.ShelfInfo = current_shelf.get_shelf_info()
+		shelf_info_arr.push_back(shelf_info)
+	return shelf_info_arr

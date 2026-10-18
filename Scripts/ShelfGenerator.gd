@@ -8,9 +8,14 @@ const shelf_length_range: Vector2 = Vector2(3, 4)
 var placed_shelves_rect_arr: Array[Rect2] = []
 
 func _ready():
+	var loaded_room: ShopRepresentation.ShopRoom = current_room.room_manager.current_room
+	var loaded_previously: bool = loaded_room.has_loaded_before
+	if loaded_previously:
+		recover_shelves()
+		return
 	generate_shelves()
 
-func add_shelf(shelf_size: Vector2, shelf_pos: Vector2, items_in_shelf: int, is_horizontal: bool):
+func add_shelf(shelf_size: Vector2, shelf_pos: Vector2, items_in_shelf: int, is_horizontal: bool) -> Shelf:
 	var added_shelf: Shelf = UID.SCN_SHELF.instantiate()
 	added_shelf.shelf_position = shelf_pos
 	added_shelf.shelf_size = shelf_size
@@ -24,6 +29,7 @@ func add_shelf(shelf_size: Vector2, shelf_pos: Vector2, items_in_shelf: int, is_
 	shelf_as_rect.size = shelf_size
 	shelf_as_rect.position = shelf_pos
 	placed_shelves_rect_arr.push_back(shelf_as_rect)
+	return added_shelf
 
 const generation_padding_size: float = 0.2
 const max_generation_count: int = 300
@@ -70,3 +76,11 @@ func is_generated_shelf_valid(shelf_position: Vector2, shelf_size: Vector2) -> b
 		if is_intersecting: return false
 	
 	return true
+
+func recover_shelves():
+	var loaded_room: ShopRepresentation.ShopRoom = current_room.room_manager.current_room
+	for current_shelf: Shelf.ShelfInfo in loaded_room.shelf_info_arr:
+		add_shelf(
+			current_shelf.shelf_rect.size, current_shelf.shelf_rect.position,
+			current_shelf.shelf_items.size(), current_shelf.is_horizontal
+		)

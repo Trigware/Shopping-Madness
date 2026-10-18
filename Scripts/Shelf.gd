@@ -1,6 +1,12 @@
 class_name Shelf
 extends Node2D
 
+class ShelfInfo:
+	var shelf_rect: Rect2
+	var shelf_items: Array[Inventory.ItemType] = []
+	var is_horizontal: bool = false
+	var index_offset: int = 0
+
 @onready var shelf_texture: NinePatchRect = $Texture
 @onready var bounding_area: CollisionShape2D = $"Bounding Area/Collider"
 @onready var items_root: Node2D = $Items
@@ -22,7 +28,7 @@ func _ready():
 	position = shelf_position
 	add_shelf_items()
 
-func add_shelf_items():
+func add_shelf_items(items_arr: Array = []):
 	var current_position: Vector2 = Vector2.ZERO
 	var available_items: Array = Inventory.available_foods_in_room_map[shelf_room_type]
 	var index_offset: int = randi_range(0, available_items.size() - 1)
@@ -40,3 +46,19 @@ func add_shelf_items():
 		var true_food_tile_size: float = ShelfGenerator.food_tile_size * shelf_item_scale
 		current_position += true_food_tile_size * current_direction
 		items_root.add_child(shelf_item)
+		if items_arr.size() > 0: shelf_item.item_type = items_arr[i]
+
+func get_shelf_info() -> ShelfInfo:
+	var result: ShelfInfo = ShelfInfo.new()
+	
+	result.shelf_rect.position = shelf_position
+	result.shelf_rect.size = shelf_size
+	result.is_horizontal = is_horizonzal
+	
+	for shelf_item: ShelfItem in items_root.get_children():
+		result.shelf_items.push_back(shelf_item.item_type)
+	return result
+
+func delete_shelf_items():
+	for shelf_item: ShelfItem in items_root.get_children():
+		shelf_item.queue_free()

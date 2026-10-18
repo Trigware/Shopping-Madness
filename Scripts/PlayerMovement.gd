@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @onready var sprite = $Sprite
+@onready var camera = $Camera
 
 const movement_speed: float = 100
 var current_movement_dir: MovementDir = MovementDir.None
@@ -18,8 +19,19 @@ const movement_to_animation_map: Dictionary[MovementDir, String] = {
 	MovementDir.Up: "walk_up", MovementDir.Down: "walk_down"
 }
 
+const standard_resolution: Vector2 = Vector2(1152, 648)
+const standard_zoom_level: float = 3
+
 func _process(delta: float):
 	handle_movement(delta)
+	update_camera_zoom()
+
+func update_camera_zoom():
+	var window_size: Vector2 = DisplayServer.window_get_size()
+	var window_size_change: Vector2 = window_size / standard_resolution
+	var minimum_change: float = min(window_size_change.x, window_size_change.y)
+	var used_zoom_level: float = standard_zoom_level * minimum_change
+	camera.zoom = Vector2.ONE * used_zoom_level
 
 func handle_movement(delta: float):
 	var movement_vec: Vector2 = get_movement_vector()

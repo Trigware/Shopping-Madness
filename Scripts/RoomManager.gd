@@ -9,6 +9,8 @@ var room_switching_locked: bool = false
 func switch_to_next(destination_room: ShopRepresentation.ShopRoom):
 	if room_switching_locked: return
 	
+	current_room.shelf_info_arr = room_scene.get_all_shelf_info()
+	current_room.has_loaded_before = true
 	current_room = destination_room
 	room_switching_locked = true
 	await Overlay.transition(on_switching_to_destination)

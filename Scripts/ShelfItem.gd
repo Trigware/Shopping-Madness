@@ -29,6 +29,7 @@ func _process(delta: float):
 	handle_pickup()
 
 func handle_pickup():
+	if item_type == Inventory.ItemType.None: return
 	var bodies_in_area: Array = get_overlapping_bodies()
 	var does_player_overlap: bool = false
 	for body: Node in bodies_in_area:
@@ -36,6 +37,6 @@ func handle_pickup():
 		if is_player: does_player_overlap = true; break
 	if not does_player_overlap: return
 	
-	print(Inventory.ItemType.find_key(item_type))
 	Inventory.add_item(item_type, 1)
-	queue_free()
+	item_type = Inventory.ItemType.None
+	hide()

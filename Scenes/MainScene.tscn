@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://ud6qg1g2rrs5" path="res://Scripts/RoomManager.gd" id="1_qxria"]
 [ext_resource type="PackedScene" uid="uid://7nvg0kvyancw" path="res://Scenes/Room.tscn" id="1_tr2i4"]
 [ext_resource type="PackedScene" uid="uid://dil1d0a3q828c" path="res://Scenes/GroceryList.tscn" id="3_nhkr4"]
+[ext_resource type="PackedScene" uid="uid://cqk0exxn8op0c" path="res://Scenes/TextSystem.tscn" id="6_y4jh7"]
 
 [node name="Root" type="Node2D" unique_id=1297904708]
 script = ExtResource("1_qxria")
@@ -19,3 +20,5 @@ room_manager = NodePath("..")
 z_index = 1
 
 [node name="MoneyUI" parent="." unique_id=1950658008 instance=ExtResource("3_nhkr4")]
+
+[node name="Text System" parent="." unique_id=356215522 instance=ExtResource("6_y4jh7")]
