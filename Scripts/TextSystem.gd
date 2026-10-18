@@ -85,6 +85,9 @@ func position_textbox():
 	text_box.position.x = textbox_offset
 	text_box.position.y = window_size.y - current_size_px.y * textbox_y_offset_multiplier
 
+const interpunction_symbols = ["!", ".", "-", ",", ":", "…"]
+const interpunction_delay: float = 0.5
+
 func render_text_segment(current_segment: TextSegment):
 	var segment_as_text: String = current_segment.segment_as_text
 	text_box_contents.text = segment_as_text
@@ -93,8 +96,14 @@ func render_text_segment(current_segment: TextSegment):
 	
 	for i in range(segment_text_length):
 		var visible_ratio: float = (i + 1) / segment_text_length
+		var ch: String = segment_as_text[i]
 		text_box_contents.visible_ratio = visible_ratio
-		await get_tree().create_timer(wait_between_glyphs).timeout
+		var is_last_ch: bool = i == segment_text_length - 1
+		
+		var is_interpunction_symbol: bool = interpunction_symbols.has(ch)
+		var glyph_wait_duration: float = wait_between_glyphs
+		if is_interpunction_symbol and not is_last_ch: glyph_wait_duration += interpunction_delay
+		await get_tree().create_timer(glyph_wait_duration).timeout
 		talking_audio.play()
 	
 	progress_indicator.show()

@@ -4,6 +4,7 @@ extends Node2D
 @onready var background: ColorRect = $Background
 @onready var phone_root: Node2D = $"Phone Root"
 @onready var ringtone: AudioStreamPlayer = $"Phone Root/Ringtone"
+@onready var bg_diagonals: TiledDiagonals = $"BG Diagonals"
 
 @onready var answer_icon: Sprite2D = $"Phone Root/Answer Icon"
 @onready var decline_icon: Sprite2D = $"Phone Root/Decline Icon"
@@ -16,7 +17,9 @@ var phone_additional_offset: float = 1
 const wait_for_phone_duration: float = 0.7
 
 func _ready():
+	phone_root.hide()
 	ringtone.finished.connect(play_ringtone_again)
+	bg_diagonals.position_offset = -bg_diagonals.size / 2
 	await get_tree().create_timer(wait_for_phone_duration).timeout
 	handle_phone_tweens()
 
@@ -46,6 +49,7 @@ func handle_tweening(relative_final: float, offset_final: float):
 		set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD).finished
 
 func handle_phone_tweens():
+	phone_root.show()
 	await handle_tweening(0.5, 0)
 	ringtone.play()
 	is_ringing = true
@@ -84,22 +88,26 @@ func handle_phone_decline():
 
 var phone_dialog: Array = [
 	TextSystem.TextSegment.ctor("Konečně jsi mi to zvedl! Pokouším se tě dovolat od už od půl pátý!"),
-	TextSystem.TextSegment.ctor("Ty jsi si nepřipravil tu zatracenou svačinu..."),
+	TextSystem.TextSegment.ctor("Ty jsi si nepřipravil tu zatracenou svačinu…"),
 	TextSystem.TextSegment.ctor("Já ti to říkám ti to celý večer a ty to stejně neuděláš!"),
 	TextSystem.ChoiceSegment.ctor({
 		"Promiň mami, jdu si to hned připravit.": [
 			TextSystem.TextSegment.ctor("No tak to doufám - udělej to dřív než řeknu tátovi ať se o tebe postárá!")
 		],
 		"Kašlu ti na to!": [
-			TextSystem.TextSegment.ctor("No co si to dovoluješ, mě takhle oslovovat - ještě jednou mi něco takovýho řekneš přísahám..."),
+			TextSystem.TextSegment.ctor("No co si to dovoluješ, mě takhle oslovovat - ještě jednou mi něco takovýho řekneš přísahám…"),
 			TextSystem.TextSegment.ctor("PŘÍSAHÁM! ŽE TY TVOJE MINECRAFTY UŽ NIKDY NEUVIDÍŠ!")
 		]
 	}),
-	TextSystem.TextSegment.ctor("Dělej než my vyčerpáš všechny moje kredity...")
+	TextSystem.TextSegment.ctor("Dělej než my vyčerpáš všechny moje kredity…")
 ]
+
+const transition_fade_out_duration: float = 0.8
 
 func handle_phone_answer():
 	ringtone.stop()
 	await handle_tweening(1, 1)
 	await get_tree().create_timer(0.5).timeout
-	TextSystem.render_dialog_arr(phone_dialog)
+	#TextSystem.render_dialog_arr(phone_dialog)
+	create_tween().tween_property(background, "color:a", 0, transition_fade_out_duration).\
+		set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
