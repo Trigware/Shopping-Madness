@@ -2,32 +2,59 @@
 
 [ext_resource type="Script" uid="uid://ve501flyfkk7" path="res://Scripts/GroceryList.gd" id="1_k8wm2"]
 [ext_resource type="FontFile" uid="uid://dil43sbwcg2uc" path="res://Fonts/Leafcross Font.png" id="1_wwshn"]
+[ext_resource type="Texture2D" uid="uid://dblxurenliuhk" path="res://Textures/PaperHeader.png" id="2_k8wm2"]
+[ext_resource type="Texture2D" uid="uid://dh584poae7gev" path="res://Textures/UIPaper.png" id="3_wmv6c"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_k8wm2"]
+[sub_resource type="LabelSettings" id="LabelSettings_ok4s6"]
 font = ExtResource("1_wwshn")
+font_size = 120
 font_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
 
-[node name="CanvasLayer" type="CanvasLayer" unique_id=152937536]
+[node name="Grocery List" type="CanvasLayer" unique_id=152937536]
 script = ExtResource("1_k8wm2")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=445255557]
-offset_right = 253.0
-offset_bottom = 331.0
-color = Color(0.72, 0.72, 0.72, 0.49803922)
+[node name="Grocery Root" type="Control" parent="." unique_id=206041404]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="ColorRect" unique_id=578787921]
+[node name="Grocery Header" type="TextureRect" parent="Grocery Root" unique_id=2125984901]
 layout_mode = 0
-offset_right = 266.0
-offset_bottom = 104.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Test
-Test2b"
-label_settings = SubResource("LabelSettings_k8wm2")
+offset_right = 571.0
+offset_bottom = 109.0
+texture = ExtResource("2_k8wm2")
 
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=908600574]
-visible = false
-offset_left = 911.0
-offset_top = 1.0
-offset_right = 1151.0
-offset_bottom = 333.0
-color = Color(0.93233335, 1, 0.71000004, 0.49803922)
+[node name="Grocery Body" type="NinePatchRect" parent="Grocery Root" unique_id=1807111404]
+layout_mode = 0
+offset_top = 109.0
+offset_right = 570.0
+offset_bottom = 651.0
+texture = ExtResource("3_wmv6c")
+patch_margin_left = 50
+patch_margin_top = 20
+patch_margin_right = 50
+patch_margin_bottom = 20
+
+[node name="Label" type="Label" parent="Grocery Root" unique_id=1919494201]
+layout_mode = 0
+offset_left = 19.0
+offset_top = -7.0
+offset_right = 512.0
+offset_bottom = 121.0
+text = "Nákup"
+label_settings = SubResource("LabelSettings_ok4s6")
+
+[node name="Groceries" type="RichTextLabel" parent="Grocery Root" unique_id=1722527249]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 117.0
+offset_right = 563.0
+offset_bottom = 649.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_wwshn")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = " - AAAA
+ - BBBB"
