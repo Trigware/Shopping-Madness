@@ -90,7 +90,6 @@ const interpunction_symbols = ["!", ".", "-", ",", ":", "…"]
 const interpunction_delay: float = 0.5
 
 const voice_clips_path: String = "res://Audio/Voiceclips/"
-const default_voice_clip_extension: String = ".mp3"
 
 func render_text_segment(current_segment: TextSegment):
 	var segment_as_text: String = current_segment.segment_as_text
@@ -98,7 +97,7 @@ func render_text_segment(current_segment: TextSegment):
 	var segment_text_length: float = segment_as_text.length()
 	choicer_root.hide()
 	if current_segment.segment_audio != "":
-		var voice_clip_path: String = voice_clips_path + current_segment.segment_audio + default_voice_clip_extension
+		var voice_clip_path: String = voice_clips_path + current_segment.segment_audio
 		var loaded_voiceclip: AudioStream = load(voice_clip_path)
 		Audio.play(loaded_voiceclip)
 	

@@ -16,7 +16,7 @@ func _ready():
 	player.is_movement_locked = true
 	player.position.x = Room.tile_size * starting_tile_x_pos
 	move_player_to_freezer()
-	await TextSystem.render_dialog_arr([TextSystem.TextSegment.ctor("Příště když tohle uděláš, tak budeš bez těch rob loksů, rozumíš?", "intro_05")])
+	await TextSystem.render_dialog_arr([TextSystem.TextSegment.ctor("Příště když tohle uděláš, tak budeš bez těch rob loksů, rozumíš?", "intro_05.mp3")])
 	open_fridge()
 
 const movement_speed_multiplier: float = 0.6
@@ -59,8 +59,8 @@ var is_after_fridge_running_active: bool = false
 
 func handle_after_open_dialog():
 	var after_open_dialog: Array = [
-		TextSystem.TextSegment.ctor("Neříkej mi, že už máme zase prázdnou ledničku!", "intro_06"),
-		TextSystem.TextSegment.ctor("Upaluj hned do krámu si něco koupit…", "intro_07")
+		TextSystem.TextSegment.ctor("Neříkej mi, že už máme zase prázdnou ledničku!", "intro_06.mp3"),
+		TextSystem.TextSegment.ctor("Upaluj hned do krámu si něco koupit…", "intro_07.mp3")
 	]
 	player.lock_camera()
 	
