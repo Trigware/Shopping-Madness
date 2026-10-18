@@ -10,7 +10,7 @@ var current_room_type: Inventory.RoomType = Inventory.RoomType.Pastry
 @onready var shadow_floor: ColorRect = $"Shadow Floor"
 @onready var room_walls: RoomWalls = $RoomWalls
 @onready var bounding_area: StaticBody2D = $"Bounding Area"
-@export var playerNode: Player
+@export var player_node: Player
 @export var room_manager: RoomManager
 
 const diagonals_size: int = 10000
@@ -26,7 +26,7 @@ func _ready():
 
 func center_player():
 	var room_size_in_px: Vector2 = default_room_size * tile_size
-	playerNode.position = room_size_in_px / 2
+	player_node.position = room_size_in_px / 2
 
 func setup_floor():
 	room_floor.clear()
