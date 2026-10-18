@@ -20,7 +20,7 @@ const floor_shadow_offset: int = 5
 
 func _ready():
 	generate_room_size()
-	center_player()
+	reposition_player()
 	setup_floor()
 	center_background()
 	handle_floor_shadow()
@@ -34,9 +34,15 @@ func generate_room_size():
 	generated_room_size = Vector2(generated_width, generated_height)
 	if room_manager.current_room.has_loaded_before: generated_room_size = room_manager.current_room.room_size
 
-func center_player():
-	var room_size_in_px: Vector2 = generated_room_size * tile_size
-	player_node.position = room_size_in_px / 2
+func reposition_player():
+	var reversed_enter_dir: Player.MovementDir =\
+		 ShopRepresentation.reversed_directions_map[room_manager.previously_came_from_dir]
+	var generated_room_size_in_px: Vector2 = generated_room_size * tile_size
+	var player_spawn_multiplier: Vector2 = Player.movement_dir_to_spawn_multiplier[reversed_enter_dir]
+	
+	player_node.position = generated_room_size_in_px * player_spawn_multiplier
+	if reversed_enter_dir == Player.MovementDir.Down:
+		player_node.position.y -= tile_size
 
 func setup_floor():
 	room_floor.clear()

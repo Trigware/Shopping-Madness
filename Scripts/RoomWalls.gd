@@ -45,6 +45,7 @@ func body_entered_to_enterance(movement_dir: Player.MovementDir, body: Node2D):
 	if not body.is_in_group("Player"): return
 	var current_room: ShopRepresentation.ShopRoom = room_root.room_manager.current_room
 	var next_room: ShopRepresentation.ShopRoom = current_room.linked_rooms[movement_dir]
+	room_root.room_manager.previously_came_from_dir = movement_dir
 	room_root.room_manager.switch_to_next(next_room)
 
 const exit_arrow_offset: float = 18

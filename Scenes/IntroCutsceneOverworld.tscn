@@ -1,0 +1,85 @@
+[gd_scene format=4 uid="uid://cdrg8igfbieoo"]
+
+[ext_resource type="Script" uid="uid://dh3yaccsf8o4r" path="res://Scripts/IntroCutsceneOverworld.gd" id="1_0p7w4"]
+[ext_resource type="PackedScene" uid="uid://c0et5rb4hx584" path="res://Scenes/Tiled Diagonals.tscn" id="1_pkjus"]
+[ext_resource type="Shader" uid="uid://cq4hrpfm5ov4g" path="res://Shaders/TilingDiagonals.gdshader" id="2_0p7w4"]
+[ext_resource type="PackedScene" uid="uid://b110ueifp4aiw" path="res://Scenes/Player.tscn" id="4_432vm"]
+[ext_resource type="Texture2D" uid="uid://b6bwkxk3u18j3" path="res://Textures/HouseFloorTile.png" id="4_q4pr6"]
+[ext_resource type="Texture2D" uid="uid://q5tpkancbudy" path="res://Textures/Fridge.png" id="6_eo1dj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_432vm"]
+shader = ExtResource("2_0p7w4")
+shader_parameter/pixel_count = Vector2(1000, 1000)
+shader_parameter/texture_size = Vector2(250, 250)
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/diagonal_lines = 4.0
+shader_parameter/gap_size = 0.519
+shader_parameter/pattern_repeated = 607.3128500343386
+shader_parameter/line_color = Vector4(0, 0, 0, 0)
+shader_parameter/gap_color = Vector4(0, 0, 0, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eo1dj"]
+texture = ExtResource("4_q4pr6")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_h5p0h"]
+tile_size = Vector2i(24, 24)
+sources/0 = SubResource("TileSetAtlasSource_eo1dj")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5p0h"]
+atlas = ExtResource("6_eo1dj")
+region = Rect2(0, 0, 52, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjkmp"]
+atlas = ExtResource("6_eo1dj")
+region = Rect2(52, 0, 52, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sdm6t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5p0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjkmp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="IntroCutsceneOverworld" type="Node2D" unique_id=1718462002]
+script = ExtResource("1_0p7w4")
+
+[node name="Background" parent="." unique_id=279757855 instance=ExtResource("1_pkjus")]
+material = SubResource("ShaderMaterial_432vm")
+offset_right = 10000.0
+offset_bottom = 10000.0
+diagonal_lines = 4.0
+line_color = Color(0.29, 0.29, 0.29, 1)
+value_offset = 0.02
+pattern_speed = 0.15
+
+[node name="Shadow" type="TileMapLayer" parent="." unique_id=1032038949]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+position = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAD/////AAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAABAP//AAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wAAAAAAAAAAAAD9////AAAAAAAAAAD9//7/AAAAAAAAAAD+//7/AAAAAAAAAAD///7/AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAIAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD8/wIAAAAAAAAAAAD8/wEAAAAAAAAAAAD8/wAAAAAAAAAAAAD8////AAAAAAAAAAD8//7/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAD7//7/AAAAAAAAAAD7////AAAAAAAAAAD7/wAAAAAAAAAAAAD7/wEAAAAAAAAAAAD7/wIAAAAAAAAAAAAEAP7/AAAAAAAAAAAEAP//AAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_h5p0h")
+
+[node name="Floor" type="TileMapLayer" parent="." unique_id=286479810]
+tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAD/////AAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAABAP//AAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wAAAAAAAAAAAAD9////AAAAAAAAAAD9//7/AAAAAAAAAAD+//7/AAAAAAAAAAD///7/AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAIAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD8/wIAAAAAAAAAAAD8/wEAAAAAAAAAAAD8/wAAAAAAAAAAAAD8////AAAAAAAAAAD8//7/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAD7//7/AAAAAAAAAAD7////AAAAAAAAAAD7/wAAAAAAAAAAAAD7/wEAAAAAAAAAAAD7/wIAAAAAAAAAAAAEAP7/AAAAAAAAAAAEAP//AAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_h5p0h")
+
+[node name="Fridge Root" type="Node2D" parent="." unique_id=1856889951]
+position = Vector2(39, -49)
+
+[node name="Fridge Shadow" type="AnimatedSprite2D" parent="Fridge Root" unique_id=556321644]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_sdm6t")
+
+[node name="Fridge" type="AnimatedSprite2D" parent="Fridge Root" unique_id=876745148]
+sprite_frames = SubResource("SpriteFrames_sdm6t")
+
+[node name="Player" parent="." unique_id=1024422057 instance=ExtResource("4_432vm")]

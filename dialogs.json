@@ -110,7 +110,7 @@
 				]
 			},
 			"lecture": {
-				"text": "Das ist keine Ausrede! Výmluvy! V devadesátém osmém v Drážďanech žáci taky zírali jak solné sloupy. Neuměli si říct ani o hořčici – 'Der Senf'! Vy mě vůbec neposloucháte, že ne?",
+				"text": "Das ist keine Ausrede! Výmluvy! V devadesátém osmém v Drážďanech žáci taky zírali jak solné sloupy. Neuměli si říct ani o hořčici - 'Der Senf'! Vy mě vůbec neposloucháte, že ne?",
 				"audio": "nemcinarka_interact_lecture.mp3",
 				"choices": [
 					{ "text": "Poslouchám, ale spěchám.", "next": "drill" },

@@ -1,7 +1,9 @@
-[gd_scene format=3 uid="uid://cajxjha03fifn"]
+[gd_scene format=3 uid="uid://dlgqwnkncux2t"]
 
-[ext_resource type="Script" path="res://Scenes/InventoryUi.gd" id="1_12hnx"]
-[ext_resource type="Texture2D" uid="uid://dujl76deoyttq" path="res://Textures/Inv_UI_Paper.png" id="2_rypqr"]
+[ext_resource type="Script" uid="uid://b3k1jygxnm5pe" path="res://Scenes/InventoryUi.gd" id="1_12hnx"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_12hnx"]
+load_path = "res://.godot/imported/Inv_UI_Paper.png-6adf973913299676b5cb056d46bff305.ctex"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rypqr"]
 
@@ -22,7 +24,7 @@ offset_right = 307.5
 offset_bottom = 230.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_rypqr")
+texture = SubResource("CompressedTexture2D_12hnx")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer" unique_id=2058729931]
 layout_mode = 1

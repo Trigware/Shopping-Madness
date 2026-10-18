@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ddi6cw6wifooj"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Inventory_UI.tscn" id="1_7rqgy"]
+[ext_resource type="PackedScene" uid="uid://dlgqwnkncux2t" path="res://Scenes/Inventory_UI.tscn" id="1_7rqgy"]
 [ext_resource type="PackedScene" uid="uid://b110ueifp4aiw" path="res://Scenes/Player.tscn" id="1_hpc76"]
 [ext_resource type="Script" uid="uid://ud6qg1g2rrs5" path="res://Scripts/RoomManager.gd" id="1_qxria"]
 [ext_resource type="PackedScene" uid="uid://7nvg0kvyancw" path="res://Scenes/Room.tscn" id="1_tr2i4"]
@@ -19,6 +19,6 @@ room_manager = NodePath("..")
 [node name="Player" parent="." unique_id=1332566470 instance=ExtResource("1_hpc76")]
 z_index = 1
 
-[node name="MoneyUI" parent="." unique_id=1950658008 instance=ExtResource("3_nhkr4")]
+[node name="GroceryList" parent="." unique_id=1950658008 instance=ExtResource("3_nhkr4")]
 
 [node name="Text System" parent="." unique_id=356215522 instance=ExtResource("6_y4jh7")]
