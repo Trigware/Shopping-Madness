@@ -2,6 +2,7 @@ class_name ShelfGenerator
 extends Node2D
 
 @export var current_room: Room
+@export var npc_parent: Node2D
 
 const shelf_smaller_size: float = 25
 const shelf_length_range: Vector2 = Vector2(3, 4)
@@ -10,6 +11,7 @@ var placed_shelves_rect_arr: Array[Rect2] = []
 func _ready():
 	var loaded_room: ShopRepresentation.ShopRoom = current_room.room_manager.current_room
 	var loaded_previously: bool = loaded_room.has_loaded_before
+	generate_npc()
 	if loaded_previously:
 		recover_shelves()
 		return
@@ -85,3 +87,20 @@ func recover_shelves():
 			current_shelf.shelf_rect.size, current_shelf.shelf_rect.position,
 			current_shelf.shelf_items.size(), current_shelf.is_horizontal
 		)
+
+var npc_spawn_locations: Dictionary[Inventory.RoomType, TextSystem.SpeakingCharacter] = {
+	Inventory.RoomType.Drinks: TextSystem.SpeakingCharacter.Grznar,
+	Inventory.RoomType.Dairy: TextSystem.SpeakingCharacter.GermanTeacher,
+	Inventory.RoomType.Pastry: TextSystem.SpeakingCharacter.Drobasek,
+	Inventory.RoomType.SmokedMeat: TextSystem.SpeakingCharacter.Mrazek
+}
+
+func generate_npc():
+	var current_room_type: Inventory.RoomType = current_room.room_manager.current_room.room_type
+	var does_room_contains_npc: bool = npc_spawn_locations.has(current_room_type)
+	if not does_room_contains_npc: return
+	
+	var current_npc_type: TextSystem.SpeakingCharacter = npc_spawn_locations[current_room_type]
+	var spawned_npc = UID.SCN_NPC.instantiate()
+	spawned_npc.character_type = current_npc_type
+	npc_parent.add_child(spawned_npc)

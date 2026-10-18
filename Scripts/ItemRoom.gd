@@ -1,7 +1,7 @@
 class_name Room
 extends Node2D
 
-const minimum_room_size: Vector2 = Vector2(8, 5)
+const minimum_room_size: Vector2 = Vector2(11, 8)
 const maximum_room_size: Vector2 = Vector2(15, 12)
 var generated_room_size: Vector2 = Vector2.ZERO
 const last_texture_coordinate: Vector2i = Vector2i(1, 1)
