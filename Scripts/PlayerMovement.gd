@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 const movement_speed: float = 100
 var current_movement_dir: MovementDir = MovementDir.None
+var is_movement_locked: bool = false
+var speed_multiplier: float = 1
 
 enum MovementDir {
 	None, Left, Right, Up, Down
@@ -13,6 +15,11 @@ enum MovementDir {
 
 const possible_horizontal_directions: Array[MovementDir] = [MovementDir.Left, MovementDir.Right]
 const possible_vertical_directions: Array[MovementDir] = [MovementDir.Up, MovementDir.Down]
+
+const movement_dir_to_spawn_multiplier: Dictionary[MovementDir, Vector2] = {
+	MovementDir.Left: Vector2(0, 0.5), MovementDir.Right: Vector2(1, 0.5),
+	MovementDir.Up: Vector2(0.5, 0), MovementDir.Down: Vector2(0.5, 1)
+}
 
 const movement_to_animation_map: Dictionary[MovementDir, String] = {
 	MovementDir.Left: "walk_left", MovementDir.Right: "walk_right",
@@ -32,10 +39,28 @@ func update_camera_zoom():
 	var minimum_change: float = min(window_size_change.x, window_size_change.y)
 	var used_zoom_level: float = standard_zoom_level * minimum_change
 	camera.zoom = Vector2.ONE * used_zoom_level
+	if is_camera_locked: camera.global_position = locked_position
 
 func handle_movement(delta: float):
 	var movement_vec: Vector2 = get_movement_vector()
-	velocity = movement_vec * movement_speed
+	if is_movement_locked: return
+	simulate_input(movement_vec)
+
+const vec_to_movement_dir_map: Dictionary[Vector2, MovementDir] = {
+	Vector2.LEFT: MovementDir.Left, Vector2.RIGHT: MovementDir.Right,
+	Vector2.UP: MovementDir.Up, Vector2.DOWN: MovementDir.Down
+}
+
+var is_camera_locked: bool = false
+var locked_position: Vector2 = Vector2.ZERO
+
+func lock_camera():
+	is_camera_locked = true
+	locked_position = camera.global_position
+
+func simulate_input(movement_vec: Vector2):
+	velocity = movement_vec * movement_speed * speed_multiplier
+	current_movement_dir = get_movement_direction(movement_vec)
 	move_and_slide()
 	if current_movement_dir == MovementDir.None:
 		sprite.stop()
@@ -53,7 +78,6 @@ func get_movement_vector() -> Vector2:
 	if Input.is_action_pressed("walk_up"): movement_vec.y -= 1
 	if Input.is_action_pressed("walk_down"): movement_vec.y += 1
 	
-	current_movement_dir = get_movement_direction(movement_vec)
 	return movement_vec
 
 func get_movement_direction(movement_vec: Vector2) -> MovementDir:

@@ -22,6 +22,8 @@ enum RoomType {
 	None, Vegetables, Pastry, Meat, Fruits, Dairy, Drinks, SmokedMeat, Spice, CashRegister
 }
 
+var item_pick_up_disabled: bool = false
+
 # Textury pro celé místnosti (zelenina a pečivo jedou ze spritesheetů, zbytek ze slozek protoze se mi nechteli delat sprite sheety)
 var room_textures_map: Dictionary = {
 	RoomType.Vegetables: preload("res://Textures/spritesheet ovoce zelenina.png"),

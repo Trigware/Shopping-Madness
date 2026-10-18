@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bj2al7pxtphwp"]
 
 [ext_resource type="Script" uid="uid://ivs3qggbeks8" path="res://Scripts/NPC.gd" id="1_fo5tq"]
-[ext_resource type="Texture2D" uid="uid://bqs8ubrg17g5d" path="res://Textures/Player.png" id="1_tdvfm"]
 [ext_resource type="Texture2D" uid="uid://duwua2tsa1bcm" path="res://Textures/InteractableCharacters.png" id="2_fo5tq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xs5w8"]
@@ -12,13 +11,13 @@ region = Rect2(0, 0, 60, 110)
 atlas = ExtResource("2_fo5tq")
 region = Rect2(60, 0, 60, 110)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_17t5b"]
-atlas = ExtResource("1_tdvfm")
-region = Rect2(256, 0, 32, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo5tq"]
+atlas = ExtResource("2_fo5tq")
+region = Rect2(160, 0, 80, 120)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_faxwx"]
-atlas = ExtResource("1_tdvfm")
-region = Rect2(256, 0, 32, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_17t5b"]
+atlas = ExtResource("2_fo5tq")
+region = Rect2(240, 0, 80, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_analj"]
 animations = [{
@@ -40,7 +39,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_17t5b")
+"texture": SubResource("AtlasTexture_fo5tq")
 }],
 "loop": true,
 "name": &"Grznar",
@@ -48,9 +47,9 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_faxwx")
+"texture": SubResource("AtlasTexture_17t5b")
 }],
-"loop": true,
+"loop": false,
 "name": &"Mrazek",
 "speed": 5.0
 }]
@@ -65,7 +64,7 @@ script = ExtResource("1_fo5tq")
 position = Vector2(3, 0)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_analj")
-animation = &"Drobasek"
+animation = &"Mrazek"
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=234100968]
 position = Vector2(0, 19.5)

@@ -42,3 +42,24 @@ func _ready():
 	var opposite_axis_index: int = 0 if is_horizontal_shelf else 1
 	collider.scale[shape_axis_index] *= collider_scale_multiplier
 	collider.scale[opposite_axis_index] *= smaller_axis_collider_multiplier
+
+func _process(_delta):
+	var is_picking_up: bool = Input.is_action_just_pressed("item_pickup")
+	if not is_picking_up: return
+	handle_pickup()
+
+func handle_pickup():
+	if item_type == Inventory.ItemType.None or Inventory.item_pick_up_disabled: return
+	var bodies_in_area: Array = get_overlapping_bodies()
+	var does_player_overlap: bool = false
+	for body: Node in bodies_in_area:
+		var is_player: bool = body.is_in_group("Player")
+		if is_player: does_player_overlap = true; break
+	if not does_player_overlap: return
+	
+	Inventory.add_item(item_type, 1)
+	item_type = Inventory.ItemType.None
+	hide()
+	Inventory.item_pick_up_disabled = true
+	await get_tree().process_frame
+	Inventory.item_pick_up_disabled = false

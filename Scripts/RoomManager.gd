@@ -2,6 +2,7 @@ class_name RoomManager
 extends Node2D
 
 var current_room: ShopRepresentation.ShopRoom = ShopRepresentation.shop_enterance
+var previously_came_from_dir: Player.MovementDir = Player.MovementDir.Up
 @onready var room_scene: Room = $Room
 @onready var player_node: Player = $Player
 var room_switching_locked: bool = false

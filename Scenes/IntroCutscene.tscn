@@ -1,41 +1,17 @@
-[gd_scene format=4 uid="uid://dalh8s40r8i3f"]
+[gd_scene format=3 uid="uid://dalh8s40r8i3f"]
 
 [ext_resource type="Script" uid="uid://csfanui4lj1oy" path="res://Scripts/IntroCutscene.gd" id="1_ub2q7"]
-[ext_resource type="Texture2D" uid="uid://b6bwkxk3u18j3" path="res://Textures/HouseFloorTile.png" id="2_cwr80"]
 [ext_resource type="Texture2D" uid="uid://ccrsh1faeu51f" path="res://Textures/Phone.png" id="2_o4cn7"]
 [ext_resource type="FontFile" uid="uid://dil43sbwcg2uc" path="res://Fonts/Leafcross Font.png" id="3_o4cn7"]
 [ext_resource type="Texture2D" uid="uid://bxer2n7kh6bon" path="res://Textures/PhoneAnswerIcon.png" id="4_qf13d"]
 [ext_resource type="Texture2D" uid="uid://cqjxgqhitnsyx" path="res://Textures/PhoneDeclineIcon.png" id="5_gxppd"]
 [ext_resource type="AudioStream" uid="uid://bt1v3kycewl16" path="res://Audio/Ringtone.mp3" id="6_gxppd"]
-[ext_resource type="PackedScene" uid="uid://c0et5rb4hx584" path="res://Scenes/Tiled Diagonals.tscn" id="7_cysq5"]
-[ext_resource type="Shader" uid="uid://cq4hrpfm5ov4g" path="res://Shaders/TilingDiagonals.gdshader" id="8_7h0lc"]
-[ext_resource type="PackedScene" uid="uid://b110ueifp4aiw" path="res://Scenes/Player.tscn" id="9_7h0lc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p33aa"]
 font = ExtResource("3_o4cn7")
 font_size = 36
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(3, 3)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qkryq"]
-shader = ExtResource("8_7h0lc")
-shader_parameter/pixel_count = Vector2(1000, 1000)
-shader_parameter/texture_size = Vector2(250, 250)
-shader_parameter/texture_scale = Vector2(1, 1)
-shader_parameter/diagonal_lines = 4.0
-shader_parameter/gap_size = 0.519
-shader_parameter/pattern_repeated = 307.38007821650217
-shader_parameter/line_color = Vector4(0, 0, 0, 0)
-shader_parameter/gap_color = Vector4(0, 0, 0, 0)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qkryq"]
-texture = ExtResource("2_cwr80")
-texture_region_size = Vector2i(24, 24)
-0:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_04ehn"]
-tile_size = Vector2i(24, 24)
-sources/1 = SubResource("TileSetAtlasSource_qkryq")
 
 [node name="IntroCutscene" type="Node2D" unique_id=119780]
 script = ExtResource("1_ub2q7")
@@ -46,7 +22,6 @@ offset_bottom = 40.0
 color = Color(0, 0, 0, 1)
 
 [node name="Phone Root" type="Node2D" parent="." unique_id=1974600990]
-visible = false
 
 [node name="Sprite" type="Sprite2D" parent="Phone Root" unique_id=1339196163]
 texture = ExtResource("2_o4cn7")
@@ -72,18 +47,3 @@ texture = ExtResource("5_gxppd")
 
 [node name="Ringtone" type="AudioStreamPlayer" parent="Phone Root" unique_id=1166782518]
 stream = ExtResource("6_gxppd")
-
-[node name="BG Diagonals" parent="." unique_id=279757855 instance=ExtResource("7_cysq5")]
-material = SubResource("ShaderMaterial_qkryq")
-offset_right = 10000.0
-offset_bottom = 10000.0
-diagonal_lines = 4.0
-line_color = Color(0.29, 0.29, 0.29, 1)
-value_offset = 0.02
-pattern_speed = 0.15
-
-[node name="Floor" type="TileMapLayer" parent="." unique_id=2015619536]
-tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAAAAAABAAIAAQAAAAAAAAABAAEAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAACAAEAAQAAAAAAAAACAAIAAQAAAAAAAAADAAIAAQAAAAAAAAADAAEAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAEAAEAAQAAAAAAAAAEAAIAAQAAAAAAAAAFAAEAAQAAAAAAAAAFAAAAAQAAAAAAAAAFAAIAAQAAAAAAAAAEAAMAAQAAAAAAAAADAAMAAQAAAAAAAAACAAMAAQAAAAAAAAABAAMAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAQAAQAAAAAAAAABAAQAAQAAAAAAAAACAAQAAQAAAAAAAAADAAQAAQAAAAAAAAAEAAQAAQAAAAAAAAAFAAMAAQAAAAAAAAAFAAQAAQAAAAAAAAAGAAQAAQAAAAAAAAAGAAMAAQAAAAAAAAAGAAIAAQAAAAAAAAAGAAEAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAEAAQAAAAAAAAAIAAIAAQAAAAAAAAAIAAMAAQAAAAAAAAAHAAMAAQAAAAAAAAAHAAQAAQAAAAAAAAAIAAQAAQAAAAAAAAAHAAIAAQAAAAAAAAAHAAEAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAEAAQAAAAAAAAAJAAIAAQAAAAAAAAAJAAMAAQAAAAAAAAAJAAQAAQAAAAAAAAAJAAAAAQAAAAAAAAA=")
-tile_set = SubResource("TileSet_04ehn")
-
-[node name="Player" parent="." unique_id=1024422057 instance=ExtResource("9_7h0lc")]
