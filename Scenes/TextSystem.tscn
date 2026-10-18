@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://7kvfo01hkxig" path="res://Textures/TextBox.png" id="2_7t2e0"]
 [ext_resource type="FontFile" uid="uid://dil43sbwcg2uc" path="res://Fonts/Leafcross Font.png" id="3_rbnke"]
 [ext_resource type="Texture2D" uid="uid://uji7haiml64l" path="res://Textures/DialogProgressIndicator.png" id="4_o07hf"]
+[ext_resource type="AudioStream" uid="uid://bjtblikkw2im3" path="res://Audio/Default.mp3" id="5_k2o14"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_o07hf"]
 line_spacing = 0.0
@@ -35,7 +36,7 @@ shadow_color = Color(0, 0, 0, 1)
 script = ExtResource("1_tetb0")
 
 [node name="TextBox" type="TextureRect" parent="." unique_id=593180682]
-offset_top = 535.0
+offset_top = 542.0
 offset_right = 256.0
 offset_bottom = 599.0
 texture = ExtResource("2_7t2e0")
@@ -43,18 +44,18 @@ texture = ExtResource("2_7t2e0")
 [node name="Contents" type="Label" parent="TextBox" unique_id=410604220]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 18.0
+offset_top = 8.0
 offset_right = 237.0
-offset_bottom = 57.0
+offset_bottom = 50.0
 label_settings = SubResource("LabelSettings_o07hf")
 autowrap_mode = 3
 
 [node name="Progress Indicator" type="TextureRect" parent="TextBox" unique_id=1980659892]
 layout_mode = 0
-offset_left = 229.0
-offset_top = 43.0
-offset_right = 261.0
-offset_bottom = 75.0
+offset_left = 230.0
+offset_top = 33.0
+offset_right = 262.0
+offset_bottom = 65.0
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_o07hf")
 
@@ -66,27 +67,29 @@ offset_bottom = -495.0
 
 [node name="Choice A" type="Label" parent="TextBox/Choicer" unique_id=793210815]
 layout_mode = 0
-offset_top = 554.0
-offset_right = 256.0
-offset_bottom = 577.0
+offset_left = -1.0
+offset_top = 542.0
+offset_right = 255.0
+offset_bottom = 565.0
 text = "Choice A"
 label_settings = SubResource("LabelSettings_k2o14")
 horizontal_alignment = 1
 
 [node name="Choice B" type="Label" parent="TextBox/Choicer" unique_id=1818426524]
 layout_mode = 0
-offset_top = 576.0
-offset_right = 256.0
-offset_bottom = 599.0
+offset_left = -1.0
+offset_top = 569.0
+offset_right = 255.0
+offset_bottom = 592.0
 text = "Choice B"
 label_settings = SubResource("LabelSettings_y6srf")
 horizontal_alignment = 1
 
 [node name="Choice C" type="Label" parent="TextBox/Choicer" unique_id=1373777349]
 layout_mode = 0
-offset_top = 546.0
+offset_top = 540.0
 offset_right = 105.0
-offset_bottom = 599.0
+offset_bottom = 593.0
 text = "Choice C"
 label_settings = SubResource("LabelSettings_67is8")
 horizontal_alignment = 1
@@ -94,11 +97,14 @@ vertical_alignment = 1
 
 [node name="Choice D" type="Label" parent="TextBox/Choicer" unique_id=1662019219]
 layout_mode = 0
-offset_left = 151.0
-offset_top = 546.0
-offset_right = 256.0
-offset_bottom = 599.0
+offset_left = 149.0
+offset_top = 539.0
+offset_right = 254.0
+offset_bottom = 592.0
 text = "Choice D"
 label_settings = SubResource("LabelSettings_e32vq")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Talking" type="AudioStreamPlayer" parent="." unique_id=215244844]
+stream = ExtResource("5_k2o14")

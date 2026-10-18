@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dalh8s40r8i3f"]
+
+[ext_resource type="Script" uid="uid://csfanui4lj1oy" path="res://Scripts/IntroCutscene.gd" id="1_ub2q7"]
+[ext_resource type="Texture2D" uid="uid://ccrsh1faeu51f" path="res://Textures/Phone.png" id="2_o4cn7"]
+[ext_resource type="FontFile" uid="uid://dil43sbwcg2uc" path="res://Fonts/Leafcross Font.png" id="3_o4cn7"]
+[ext_resource type="Texture2D" uid="uid://bxer2n7kh6bon" path="res://Textures/PhoneAnswerIcon.png" id="4_qf13d"]
+[ext_resource type="Texture2D" uid="uid://cqjxgqhitnsyx" path="res://Textures/PhoneDeclineIcon.png" id="5_gxppd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p33aa"]
+font = ExtResource("3_o4cn7")
+font_size = 36
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[node name="IntroCutscene" type="Node2D" unique_id=119780]
+script = ExtResource("1_ub2q7")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1869422113]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
+
+[node name="Phone Root" type="Node2D" parent="." unique_id=1974600990]
+
+[node name="Sprite" type="Sprite2D" parent="Phone Root" unique_id=1339196163]
+texture = ExtResource("2_o4cn7")
+centered = false
+
+[node name="Label" type="Label" parent="Phone Root" unique_id=1271288355]
+offset_left = 7.0
+offset_top = 134.0
+offset_right = 180.0
+offset_bottom = 179.0
+text = "Mamka"
+label_settings = SubResource("LabelSettings_p33aa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer Icon" type="Sprite2D" parent="Phone Root" unique_id=1236901599]
+position = Vector2(60, 280)
+texture = ExtResource("4_qf13d")
+
+[node name="Decline Icon" type="Sprite2D" parent="Phone Root" unique_id=2102699654]
+position = Vector2(120, 280)
+texture = ExtResource("5_gxppd")
