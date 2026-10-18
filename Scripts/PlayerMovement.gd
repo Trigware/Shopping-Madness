@@ -46,6 +46,7 @@ func handle_movement(delta: float):
 
 func get_movement_vector() -> Vector2:
 	var movement_vec: Vector2 = Vector2.ZERO
+	if TextSystem.is_interacting: return Vector2.ZERO
 	
 	if Input.is_action_pressed("walk_left"): movement_vec.x -= 1
 	if Input.is_action_pressed("walk_right"): movement_vec.x += 1

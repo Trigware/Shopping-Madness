@@ -1,3 +1,103 @@
 [gd_scene format=3 uid="uid://cqk0exxn8op0c"]
 
+[ext_resource type="Script" uid="uid://28lwb012qe33" path="res://Scripts/TextSystem.gd" id="1_tetb0"]
+[ext_resource type="Texture2D" uid="uid://7kvfo01hkxig" path="res://Textures/TextBox.png" id="2_7t2e0"]
+[ext_resource type="FontFile" uid="uid://dil43sbwcg2uc" path="res://Fonts/Leafcross Font.png" id="3_rbnke"]
+[ext_resource type="Texture2D" uid="uid://uji7haiml64l" path="res://Textures/DialogProgressIndicator.png" id="4_o07hf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o07hf"]
+line_spacing = 0.0
+font = ExtResource("3_rbnke")
+font_size = 12
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k2o14"]
+font = ExtResource("3_rbnke")
+font_size = 12
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y6srf"]
+font = ExtResource("3_rbnke")
+font_size = 12
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_67is8"]
+font = ExtResource("3_rbnke")
+font_size = 12
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_e32vq"]
+font = ExtResource("3_rbnke")
+font_size = 12
+shadow_color = Color(0, 0, 0, 1)
+
 [node name="Text System" type="CanvasLayer" unique_id=356215522]
+script = ExtResource("1_tetb0")
+
+[node name="TextBox" type="TextureRect" parent="." unique_id=593180682]
+offset_top = 535.0
+offset_right = 256.0
+offset_bottom = 599.0
+texture = ExtResource("2_7t2e0")
+
+[node name="Contents" type="Label" parent="TextBox" unique_id=410604220]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 18.0
+offset_right = 272.0
+offset_bottom = 71.0
+label_settings = SubResource("LabelSettings_o07hf")
+
+[node name="Progress Indicator" type="TextureRect" parent="TextBox" unique_id=1980659892]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 43.0
+offset_right = 261.0
+offset_bottom = 75.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_o07hf")
+
+[node name="Choicer" type="Control" parent="TextBox" unique_id=21742549]
+anchors_preset = 0
+offset_top = -535.0
+offset_right = 40.0
+offset_bottom = -495.0
+
+[node name="Choice A" type="Label" parent="TextBox/Choicer" unique_id=793210815]
+layout_mode = 0
+offset_top = 554.0
+offset_right = 256.0
+offset_bottom = 577.0
+text = "Choice A"
+label_settings = SubResource("LabelSettings_k2o14")
+horizontal_alignment = 1
+
+[node name="Choice B" type="Label" parent="TextBox/Choicer" unique_id=1818426524]
+layout_mode = 0
+offset_top = 576.0
+offset_right = 256.0
+offset_bottom = 599.0
+text = "Choice B"
+label_settings = SubResource("LabelSettings_y6srf")
+horizontal_alignment = 1
+
+[node name="Choice C" type="Label" parent="TextBox/Choicer" unique_id=1373777349]
+layout_mode = 0
+offset_top = 546.0
+offset_right = 105.0
+offset_bottom = 599.0
+text = "Choice C"
+label_settings = SubResource("LabelSettings_67is8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Choice D" type="Label" parent="TextBox/Choicer" unique_id=1662019219]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 546.0
+offset_right = 256.0
+offset_bottom = 599.0
+text = "Choice D"
+label_settings = SubResource("LabelSettings_e32vq")
+horizontal_alignment = 1
+vertical_alignment = 1
