@@ -1,6 +1,5 @@
 extends Node
 
-# --- ČÁST PRO PENÍZE ---
 signal money_changed(new_amount: int)
 var money: int = 0
 
@@ -12,7 +11,7 @@ func remove_money(amount: int) -> void:
 	money = max(0, money - amount)
 	money_changed.emit(money)
 
-# Testování peněz přes P a O
+# Test
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_P:

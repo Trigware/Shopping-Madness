@@ -22,33 +22,31 @@ enum RoomType {
 	None, Vegetables, Pastry, Meat, Fruits, Dairy, Drinks, SmokedMeat, Spice, CashRegister
 }
 
-# 1A. PŮVODNÍ SPRITESHEETY (Zelenina a Pečivo zůstávají tak, jak už ti fungují!)
+# Textury pro celé místnosti (zelenina a pečivo jedou ze spritesheetů, zbytek ze slozek protoze se mi nechteli delat sprite sheety)
 var room_textures_map: Dictionary = {
 	RoomType.Vegetables: preload("res://Textures/spritesheet ovoce zelenina.png"),
 	RoomType.Pastry: preload("res://Textures/PastrySpritesheet.png"),
-	
-	# Tady doplníme ty nové složky:
-	RoomType.Dairy: preload("res://Textures/mléčné a sypke výrobky/mleko.png"), # Nebo můžeš vytvořit jeden společný obrázek, případně zvolit hlavní sprite
+	RoomType.Dairy: preload("res://Textures/mléčné a sypke výrobky/mleko.png"),
 	RoomType.Meat: preload("res://Textures/maso/tunak.png"),
 	RoomType.SmokedMeat: preload("res://Textures/maso/sunka.png"),
 	RoomType.Drinks: preload("res://Textures/pití/dzusik.png"),
 	RoomType.Spice: preload("res://Textures/koreni, konzervy a testoviny/Testoviny.png")
 }
 
-# 1B. JEDNOTLIVÉ OBRÁZKY ZE SLOŽEK (pro ostatní místnosti)
+# Jednotlivé ikonky pro předměty, co se točí ve složkách
 var item_textures_map: Dictionary = {
-	# Složka: koreni, konzervy a testoviny
+	# Koření, konzervy, těstoviny
 	ItemType.Lentils: preload("res://Textures/koreni, konzervy a testoviny/cocka.png"),
 	ItemType.BakedBeans: preload("res://Textures/koreni, konzervy a testoviny/fazole.png"),
 	ItemType.Pepper: preload("res://Textures/koreni, konzervy a testoviny/pepr.png"),
 	ItemType.Spaghetti: preload("res://Textures/koreni, konzervy a testoviny/Testoviny.png"),
 	
-	# Složka: maso
+	# Maso
 	ItemType.Salmon: preload("res://Textures/maso/losos.png"),
 	ItemType.Meat: preload("res://Textures/maso/sunka.png"),
 	ItemType.Tuna: preload("res://Textures/maso/tunak.png"),
 	
-	# Složka: mléčné a sypke výrobky
+	# Mléčné a sypké výrobky
 	ItemType.Sugar: preload("res://Textures/mléčné a sypke výrobky/cukr.png"),
 	ItemType.Butter: preload("res://Textures/mléčné a sypke výrobky/maslo.png"),
 	ItemType.Milk: preload("res://Textures/mléčné a sypke výrobky/mleko.png"),
@@ -57,12 +55,12 @@ var item_textures_map: Dictionary = {
 	ItemType.Rice: preload("res://Textures/mléčné a sypke výrobky/ryze.png"),
 	ItemType.Salt: preload("res://Textures/mléčné a sypke výrobky/sul.png"),
 	
-	# Složka: pití
+	# Pití
 	ItemType.OrangeJuice: preload("res://Textures/pití/dzusik.png"),
 	ItemType.MagnesiaRed: preload("res://Textures/pití/mineralka.png"),
 }
 
-# 2. SEZNAMY POTRAVIN V MÍSTNOSTECH (přesně podle tvých složek)
+# rozdeleni na mistnosti
 var available_foods_in_room_map: Dictionary[RoomType, Array] = {
 	RoomType.Vegetables: [
 		ItemType.Orange, ItemType.Pear, ItemType.Apple, ItemType.Lemon, 
@@ -89,6 +87,7 @@ var available_foods_in_room_map: Dictionary[RoomType, Array] = {
 	]
 }
 
+# Lokalizované názvy pro výpisy do konzole nebo UI
 const itemToNameMap: Dictionary = {
 	ItemType.Orange: "Pomeranč",
 	ItemType.Pear: "Hruška",
@@ -132,24 +131,23 @@ func _ready() -> void:
 func add_item(item: ItemType, amount: int = 1) -> void:
 	if amount <= 0:
 		return
-	if Inventory.has(item):
-		Inventory[item] += amount
-	else:
-		Inventory[item] = amount
+		
+	Inventory[item] = Inventory.get(item, 0) + amount
 	inv_update.emit()
 	
 func remove_item(item: ItemType, amount: int = 1) -> void:
 	if amount <= 0 or not Inventory.has(item):
 		return
+		
 	Inventory[item] -= amount
 	if Inventory[item] <= 0:
 		Inventory.erase(item)
+		
 	inv_update.emit()
 
 func print_inventory() -> void:
 	print("--- Inventář ---")
 	for item in Inventory:
 		var item_name = itemToNameMap.get(item, "Neznámý předmět")
-		var amount = Inventory[item]
-		print(item_name + ": " + str(amount) + "x")
+		print("%s: %dx" % [item_name, Inventory[item]])
 	print("----------------")
