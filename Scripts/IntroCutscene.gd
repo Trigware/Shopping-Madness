@@ -1,0 +1,2 @@
+class_name IntroCutscene
+extends Node2D

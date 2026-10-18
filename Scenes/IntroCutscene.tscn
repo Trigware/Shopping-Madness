@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dalh8s40r8i3f"]
+
+[ext_resource type="Script" uid="uid://csfanui4lj1oy" path="res://Scripts/IntroCutscene.gd" id="1_ub2q7"]
+
+[node name="IntroCutscene" type="Node2D" unique_id=119780]
+script = ExtResource("1_ub2q7")
