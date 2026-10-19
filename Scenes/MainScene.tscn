@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dil1d0a3q828c" path="res://Scenes/GroceryList.tscn" id="3_nhkr4"]
 [ext_resource type="PackedScene" uid="uid://cqk0exxn8op0c" path="res://Scenes/TextSystem.tscn" id="6_y4jh7"]
 [ext_resource type="PackedScene" uid="uid://dxq24eaf5gh6g" path="res://Scenes/ItemValueInfo.tscn" id="7_q68mp"]
+[ext_resource type="AudioStream" uid="uid://5ley36cdhvk7" path="res://Audio/Music/Restaurant.mp3" id="8_f140w"]
 
 [node name="Root" type="Node2D" unique_id=1297904708]
 script = ExtResource("1_qxria")
@@ -27,3 +28,8 @@ layer = 3
 
 [node name="Item Valid Info" parent="." unique_id=1816931995 node_paths=PackedStringArray("player") instance=ExtResource("7_q68mp")]
 player = NodePath("../Player")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=576454494]
+stream = ExtResource("8_f140w")
+volume_db = -5.0
+autoplay = true

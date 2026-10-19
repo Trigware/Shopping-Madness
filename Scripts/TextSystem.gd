@@ -20,6 +20,7 @@ var is_interacting: bool = false
 @onready var text_box_contents: Label = $TextBox/Contents
 @onready var progress_indicator: TextureRect = $"TextBox/Progress Indicator"
 @onready var choicer_root: Control = $TextBox/Choicer
+@onready var talk_player: AudioStreamPlayer = $Talk
 
 const wait_between_glyphs: float = 0.035
 
@@ -108,7 +109,8 @@ func render_text_segment(current_segment: TextSegment):
 	if current_segment.segment_audio != "":
 		var voice_clip_path: String = voice_clips_path + current_segment.segment_audio
 		var loaded_voiceclip: AudioStream = load(voice_clip_path)
-		Audio.play(loaded_voiceclip)
+		talk_player.stream = loaded_voiceclip
+		talk_player.play()
 	
 	current_font_size = default_font_size
 	text_box_contents.label_settings.font_size = current_font_size
@@ -119,6 +121,7 @@ func render_text_segment(current_segment: TextSegment):
 		var ch: String = segment_as_text[i]
 		text_box_contents.visible_ratio = visible_ratio
 		var is_last_ch: bool = i == segment_text_length - 1
+		resize_font_to_fit()
 		
 		var is_interpunction_symbol: bool = interpunction_symbols.has(ch)
 		var glyph_wait_duration: float = wait_between_glyphs
@@ -130,7 +133,9 @@ func render_text_segment(current_segment: TextSegment):
 			break
 		
 		var play_default_audio: bool = current_segment.segment_audio == ""
-		if play_default_audio: Audio.play(UID.SFX_DEFAULT_TALK)
+		if not play_default_audio: continue
+		talk_player.stream = UID.SFX_DEFAULT_TALK
+		talk_player.play()
 	
 	progress_indicator.show()
 	await wait_until_progress()
