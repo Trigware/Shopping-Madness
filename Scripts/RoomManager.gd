@@ -23,6 +23,7 @@ func switch_to_next(destination_room: ShopRepresentation.ShopRoom):
 	room_switching_locked = true
 	await Overlay.transition(on_switching_to_destination)
 	room_switching_locked = false
+	player_node.shelf_generator = room_scene.get_node("Shelf Generator")
 
 var on_exit_refusal_dialog: Array = [
 	TextSystem.TextSegment.ctor("Zde vede cesta ke kasám. Jelikož jsi ještě nedokončil svůj seznam věcí, jít jsem není dobrý nápad.")

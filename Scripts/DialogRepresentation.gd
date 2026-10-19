@@ -53,6 +53,7 @@ func get_dialog_tree_from_interact_text(interact_lines: Dictionary, section_name
 	text_segment.segment_audio = dialog_value["audio"]
 	result.append(text_segment)
 	
+	if not dialog_value.has("choices"): return result
 	var choices_array: Array = dialog_value["choices"]
 	var choice_segment: TextSystem.ChoiceSegment = TextSystem.ChoiceSegment.new()
 	result.append(choice_segment)
@@ -60,7 +61,12 @@ func get_dialog_tree_from_interact_text(interact_lines: Dictionary, section_name
 	for choice_data: Dictionary in choices_array:
 		var choice_text: String = choice_data["text"]
 		var next_section_name: String = choice_data["next"]
-		choice_segment.possible_choices[choice_text] = get_dialog_tree_from_interact_text(interact_lines, next_section_name)
+		var choice_arr: Array = get_dialog_tree_from_interact_text(interact_lines, next_section_name)
+		if choice_data.has("action"):
+			var action_value: String = choice_data["action"]
+			choice_segment.choices_with_actions[choice_text] = TextSystem.ActionType.GiveMoney
+		
+		choice_segment.possible_choices[choice_text] = choice_arr
 	
 	return result
 

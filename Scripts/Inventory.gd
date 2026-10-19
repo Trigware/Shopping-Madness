@@ -35,6 +35,51 @@ var room_textures_map: Dictionary = {
 	RoomType.Spice: preload("res://Textures/koreni, konzervy a testoviny/Testoviny.png")
 }
 
+const item_prices: Dictionary[ItemType, int] = {
+	ItemType.None: 0,
+
+	ItemType.Orange: 15,
+	ItemType.Pear: 12,
+	ItemType.Apple: 8,
+	ItemType.Lemon: 10,
+	ItemType.Grapes: 45,
+	ItemType.Melon: 40,
+	ItemType.Banana: 6,
+
+	ItemType.Onion: 5,
+	ItemType.Brocoli: 20,
+	ItemType.Pepper: 15,
+	ItemType.Lentils: 35,
+
+	ItemType.Butter: 40,
+	ItemType.Milk: 25,
+	ItemType.Cheese: 45,
+
+	ItemType.OrangeJuice: 35,
+	ItemType.MagnesiaRed: 20,
+
+	ItemType.Salt: 15,
+	ItemType.Sugar: 25,
+
+	ItemType.BakedBeans: 30,
+	ItemType.Oatmeal: 30,
+	ItemType.Flour: 20,
+	ItemType.Rice: 30,
+
+	ItemType.Tuna: 40,
+	ItemType.Salmon: 80,
+	ItemType.Meat: 60,
+
+	ItemType.Spaghetti: 25,
+
+	ItemType.Doughnut: 20,
+	ItemType.Bun: 4,
+	ItemType.Baguette: 25,
+	ItemType.Croissant: 18,
+	ItemType.Roll: 3,
+	ItemType.Bread: 35,
+} 
+
 # Jednotlivé ikonky pro předměty, co se točí ve složkách
 var item_textures_map: Dictionary = {
 	# Koření, konzervy, těstoviny

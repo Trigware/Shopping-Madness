@@ -56,6 +56,12 @@ func handle_pickup():
 		if is_player: does_player_overlap = true; break
 	if not does_player_overlap: return
 	
+	var item_value: int = Inventory.item_prices[item_type]
+	var total_money_count: int = GameManager.money
+	var can_buy: bool = total_money_count >= item_value
+	if not can_buy or TextSystem.is_interacting: return
+	
+	GameManager.remove_money(item_value)
 	Inventory.add_item(item_type, 1)
 	item_type = Inventory.ItemType.None
 	hide()

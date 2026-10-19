@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @onready var sprite = $Sprite
 @onready var camera = $Camera
+@onready var shelf_generator = get_node_or_null("../Room/Shelf Generator")
 
 const movement_speed: float = 100
 var current_movement_dir: MovementDir = MovementDir.None
@@ -32,6 +33,7 @@ const standard_zoom_level: float = 3
 func _process(delta: float):
 	handle_movement(delta)
 	update_camera_zoom()
+	handle_possible_interactions()
 
 func update_camera_zoom():
 	var window_size: Vector2 = DisplayServer.window_get_size()
@@ -68,6 +70,27 @@ func simulate_input(movement_vec: Vector2):
 	
 	var current_animation_name: String = movement_to_animation_map[current_movement_dir]
 	sprite.play(current_animation_name)
+
+var latest_touching_food: Inventory.ItemType = Inventory.ItemType.None
+
+func handle_possible_interactions():
+	if shelf_generator == null: return
+	
+	var areas_touching_player: Array[ShelfItem] = []
+	for current_shelf in shelf_generator.get_children():
+		var items_parent: Node2D = current_shelf.get_node("Items")
+		for shelf_item_area: Area2D in items_parent.get_children():
+			if not shelf_item_area is ShelfItem: continue
+			var current_area_overlapping_bodies: Array = shelf_item_area.get_overlapping_bodies()
+			for body in current_area_overlapping_bodies:
+				if not body.is_in_group("Player"): continue
+				areas_touching_player.append(shelf_item_area)
+	
+	if areas_touching_player.size() == 0:
+		latest_touching_food = Inventory.ItemType.None
+		return
+	var first_area: ShelfItem = areas_touching_player[0]
+	latest_touching_food = first_area.item_type
 
 func get_movement_vector() -> Vector2:
 	var movement_vec: Vector2 = Vector2.ZERO

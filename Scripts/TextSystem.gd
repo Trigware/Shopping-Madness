@@ -20,6 +20,7 @@ var is_interacting: bool = false
 @onready var text_box_contents: Label = $TextBox/Contents
 @onready var progress_indicator: TextureRect = $"TextBox/Progress Indicator"
 @onready var choicer_root: Control = $TextBox/Choicer
+@onready var talk_player: AudioStreamPlayer = $Talk
 
 const wait_between_glyphs: float = 0.035
 
@@ -37,6 +38,7 @@ class TextSegment extends DialogSegment:
 
 class ChoiceSegment extends DialogSegment:
 	var possible_choices: Dictionary = {}
+	var choices_with_actions: Dictionary = {}
 	
 	static func ctor(choices: Dictionary) -> ChoiceSegment:
 		var result: ChoiceSegment = ChoiceSegment.new()
@@ -47,6 +49,7 @@ class ActionSegment extends DialogSegment:
 	var action_type: ActionType = ActionType.Unknown
 
 func render_dialog_arr(dialog_arr: Array):
+	if Overlay.is_transition_locked: return
 	TextSystem.is_interacting = true
 	text_box.show()
 	
@@ -56,6 +59,7 @@ func render_dialog_arr(dialog_arr: Array):
 	
 	TextSystem.is_interacting = false
 	text_box.hide()
+	EvaluationData.interaction_count += 1
 
 func render_segment(current_segment: DialogSegment):
 	if current_segment is TextSegment: await render_text_segment(current_segment as TextSegment)
@@ -91,6 +95,12 @@ const interpunction_delay: float = 0.5
 
 const voice_clips_path: String = "res://Audio/Voiceclips/"
 
+const default_textbox_size: Vector2 = Vector2(220, 42)
+const default_font_size: int = 12
+const minimum_font_size: int = 5
+
+var current_font_size: int = default_font_size
+
 func render_text_segment(current_segment: TextSegment):
 	var segment_as_text: String = current_segment.segment_as_text
 	text_box_contents.text = segment_as_text
@@ -99,7 +109,11 @@ func render_text_segment(current_segment: TextSegment):
 	if current_segment.segment_audio != "":
 		var voice_clip_path: String = voice_clips_path + current_segment.segment_audio
 		var loaded_voiceclip: AudioStream = load(voice_clip_path)
-		Audio.play(loaded_voiceclip)
+		talk_player.stream = loaded_voiceclip
+		talk_player.play()
+	
+	current_font_size = default_font_size
+	text_box_contents.label_settings.font_size = current_font_size
 	
 	for i in range(segment_text_length):
 		will_skip_next_time = false
@@ -107,6 +121,7 @@ func render_text_segment(current_segment: TextSegment):
 		var ch: String = segment_as_text[i]
 		text_box_contents.visible_ratio = visible_ratio
 		var is_last_ch: bool = i == segment_text_length - 1
+		resize_font_to_fit()
 		
 		var is_interpunction_symbol: bool = interpunction_symbols.has(ch)
 		var glyph_wait_duration: float = wait_between_glyphs
@@ -114,14 +129,24 @@ func render_text_segment(current_segment: TextSegment):
 		await get_tree().create_timer(glyph_wait_duration).timeout
 		if will_skip_next_time:
 			text_box_contents.visible_ratio = 1
+			resize_font_to_fit()
 			break
 		
 		var play_default_audio: bool = current_segment.segment_audio == ""
-		if play_default_audio: Audio.play(UID.SFX_DEFAULT_TALK)
+		if not play_default_audio: continue
+		talk_player.stream = UID.SFX_DEFAULT_TALK
+		talk_player.play()
 	
 	progress_indicator.show()
 	await wait_until_progress()
 	progress_indicator.hide()
+
+func resize_font_to_fit():
+	var textbox_minimum_height: float = text_box_contents.get_minimum_size().y
+	while textbox_minimum_height > default_textbox_size.y and current_font_size >= minimum_font_size:
+		textbox_minimum_height = text_box_contents.get_minimum_size().y
+		current_font_size -= 1
+		text_box_contents.label_settings.font_size = current_font_size
 
 func wait_until_progress():
 	while true:
@@ -149,8 +174,14 @@ func render_choice_segment(choice_segment: ChoiceSegment):
 	await wait_until_choicer_progress(ammount_of_used_options)
 	var current_option_index: int = choice_directions_in_order.find(current_chosen_option)
 	var option_as_key: String = choice_segment.possible_choices.keys()[current_option_index]
-	var response_segments: Array = choice_segment.possible_choices[option_as_key]
 	
+	var response_action: ActionType = ActionType.Unknown
+	if choice_segment.choices_with_actions.has(option_as_key):
+		response_action = choice_segment.choices_with_actions[option_as_key]
+	match response_action:
+		ActionType.GiveMoney: GameManager.remove_money(20)
+	
+	var response_segments: Array = choice_segment.possible_choices[option_as_key]
 	for current_segment: DialogSegment in response_segments:
 		await render_segment(current_segment)
 

@@ -62,8 +62,16 @@ func _physics_process(delta: float) -> void:
 			is_chaser = false 
 			interaction_area.monitoring = false
 			Collider = false
-				
-			
-			TextSystem.render_dialog_arr(npc_dialog)
+			on_touch_player()
 	else:
 		has_triggered_dialog = false
+
+func on_touch_player():
+	await TextSystem.render_dialog_arr(npc_dialog)
+	if character_type != TextSystem.SpeakingCharacter.GermanTeacher: return
+	#play_german_teacher_questions()
+
+func play_german_teacher_questions():
+	Overlay.transition(
+		func(): get_tree().change_scene_to_packed(UID.SCN_CLOCK_QUESTION)
+	)

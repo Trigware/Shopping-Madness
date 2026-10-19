@@ -11,15 +11,13 @@ config_version=5
 [application]
 
 config/name="Shopping Madness"
-run/main_scene="uid://ddi6cw6wifooj"
-config/features=PackedStringArray("4.7", "Forward Plus")
-<<<<<<<HEADconfig/features=PackedStringArray("4.6", "Forward Plus")
+
 
 [autoload]
 
+UID="*uid://bsf2nb5y3eavy"
 TextSystem="*uid://cqk0exxn8op0c"
 Inventory="*uid://bv8dcqpna861p"
-UID="*uid://bsf2nb5y3eavy"
 GameManager="*uid://dg5cvyl4xj6iw"
 Overlay="*uid://cowe2ynwgc2r8"
 DialogRepresentation="*uid://cdrkjwn36nfhd"

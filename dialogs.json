@@ -106,23 +106,24 @@
 				"audio": "nemcinarka_interact_start.mp3",
 				"choices": [
 					{ "text": "Už k vám do školy nechodím...", "next": "lecture" },
-					{ "text": "Jdu si koupit jen jednu věc.", "next": "lecture" }
+					{ "text": "Pardon, ale nemám čas.", "next": "lecture" }
 				]
 			},
 			"lecture": {
-				"text": "Das ist keine Ausrede! Výmluvy! V devadesátém osmém v Drážďanech žáci taky zírali jak solné sloupy. Neuměli si říct ani o hořčici - 'Der Senf'! Vy mě vůbec neposloucháte, že ne?",
-				"audio": "nemcinarka_interact_lecture.mp3",
+				"text": "Panečku, to mi připomínáte. Já s vámi musím projet nějakou tu látku, aby to s touto edukací nešlo ještě více z kopce.",
+				"audio": "",
 				"choices": [
-					{ "text": "Poslouchám, ale spěchám.", "next": "drill" },
-					{ "text": "Opravdu už musím k pokladně.", "next": "drill" }
+					{ "text": "Vy nejste už má učitelka!", "next": "test_mean" },
+					{ "text": "S radostí...", "next": "test_kind" }
 				]
 			},
-			"drill": {
-				"text": "K pokladně? 'Die Kasse'! Výborně. Než tam dojdete, zopakujeme si ovoce! 'Der Apfel' je jablko... Ne, neutíkejte mi! Ještě jsme vůbec neprobrali třetí pád! Das ist unglaublich!",
-				"audio": "nemcinarka_interact_drill.mp3",
-				"choices": [
-					{ "text": "(Odejdi)", "next": "end" }
-				]
+			"test_mean": {
+				"text": "Takhle mluvit s tvou autoritou! Hned se uč, ať to odsejpá!",
+				"audio": ""
+			},
+			"test_kind": {
+				"text": "No vida, víte jak se vám to přece jenom dělat teď! Když ti vyjde, možná ti něco dám!",
+				"audio": ""
 			}
 		}
 	},

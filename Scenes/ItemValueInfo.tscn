@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dxq24eaf5gh6g"]
+
+[ext_resource type="Script" uid="uid://djopgmqs6hp3l" path="res://Scripts/ItemValueInfo.gd" id="1_dkxkn"]
+[ext_resource type="FontFile" uid="uid://dil43sbwcg2uc" path="res://Fonts/Leafcross Font.png" id="1_uujs6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dkxkn"]
+font = ExtResource("1_uujs6")
+font_size = 30
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ra7bs"]
+font = ExtResource("1_uujs6")
+font_size = 100
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[node name="Item Value Info" type="CanvasLayer" unique_id=1816931995]
+script = ExtResource("1_dkxkn")
+
+[node name="UI Root" type="Control" parent="." unique_id=381095539]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 648.0
+offset_right = 40.0
+offset_bottom = 688.0
+
+[node name="Item Label" type="Label" parent="UI Root" unique_id=863796524]
+layout_mode = 0
+offset_right = 333.0
+offset_bottom = 30.0
+text = "Koupil bys (ENTER): ----"
+label_settings = SubResource("LabelSettings_dkxkn")
+
+[node name="Value Label" type="Label" parent="UI Root" unique_id=1902937356]
+layout_mode = 0
+offset_top = 30.0
+offset_right = 277.0
+offset_bottom = 150.0
+text = "-- Kč"
+label_settings = SubResource("LabelSettings_ra7bs")

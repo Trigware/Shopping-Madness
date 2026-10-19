@@ -22,7 +22,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xs5w8")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Drobasek",
 "speed": 5.0
 }, {
@@ -30,7 +30,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7fgga")
 }],
-"loop": 1,
+"loop": true,
 "name": &"GermanTeacher",
 "speed": 5.0
 }, {
@@ -38,7 +38,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fo5tq")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Grznar",
 "speed": 5.0
 }, {
@@ -46,8 +46,13 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_xs5w8")
 }],
+<<<<<<< HEAD
 "loop": 1,
 "name": &"biocyril",
+=======
+"loop": false,
+"name": &"Mrazek",
+>>>>>>> 6ad4b32f096fef8f96e645fc2fdbf07cdfbd562b
 "speed": 5.0
 }]
 
