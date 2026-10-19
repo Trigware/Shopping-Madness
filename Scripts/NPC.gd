@@ -1,15 +1,20 @@
 extends CharacterBody2D
 
 @onready var npc_sprite = $Sprite
+
 @onready var interaction_area = $"hitbox_interaction" 
+
 @onready var Collider = $"Collider" 
 
 @export var speed: float = 100.0
+
 @export var is_chaser: bool = false 
+
 @export var character_type: TextSystem.SpeakingCharacter = TextSystem.SpeakingCharacter.None
 
 var npc_dialog = []
 var has_triggered_dialog: bool = false 
+var is_disabled_during_transition: bool = false
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -22,6 +27,11 @@ func _ready() -> void:
 		npc_sprite.animation = char_name
 
 func _physics_process(delta: float) -> void:
+	
+	if GameManager.is_transitioning:
+			velocity = Vector2.ZERO
+			return
+	
 	#pronasledovani
 	if is_chaser and not TextSystem.is_interacting:
 		var player = get_tree().get_first_node_in_group("Player")

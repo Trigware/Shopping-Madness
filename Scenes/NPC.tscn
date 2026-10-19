@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ivs3qggbeks8" path="res://Scripts/NPC.gd" id="1_fo5tq"]
 [ext_resource type="Texture2D" uid="uid://duwua2tsa1bcm" path="res://Textures/InteractableCharacters.png" id="2_fo5tq"]
+[ext_resource type="Texture2D" uid="uid://c57twwm70w4oe" path="res://Textures/biocyril.png" id="3_xs5w8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xs5w8"]
 atlas = ExtResource("2_fo5tq")
@@ -14,10 +15,6 @@ region = Rect2(60, 0, 60, 110)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fo5tq"]
 atlas = ExtResource("2_fo5tq")
 region = Rect2(160, 0, 80, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_17t5b"]
-atlas = ExtResource("2_fo5tq")
-region = Rect2(240, 0, 80, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_analj"]
 animations = [{
@@ -47,9 +44,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_17t5b")
+"texture": ExtResource("3_xs5w8")
 }],
-"name": &"Mrazek",
+"loop": 1,
+"name": &"biocyril",
 "speed": 5.0
 }]
 
@@ -67,7 +65,7 @@ is_chaser = true
 position = Vector2(3, 0)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_analj")
-animation = &"Mrazek"
+animation = &"biocyril"
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=234100968]
 position = Vector2(0, 19.5)
