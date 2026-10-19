@@ -6,8 +6,7 @@ extends Node2D
 @onready var minute_hand = $MinuteHand
 
 var clock_index: int
-var spawner: ClockQuestion
-const relative_pos = Vector2(0.5, 0.43)
+const relative_pos = Vector2(0.5, 0.55)
 const relative_size = 0.35
 const clock_size = 60
 const spacing_multiplier = 1.4
@@ -51,10 +50,6 @@ func initialize_clock():
 		exact_minute = generate_time()
 		chosen_hour = exact_minute / minutes_in_hour
 		local_minute = exact_minute - chosen_hour * minutes_in_hour
-		var cannot_be_used = chosen_hour in spawner.used_hours or local_minute in spawner.used_minutes
-		if cannot_be_used: continue
-		spawner.used_hours.append(chosen_hour)
-		spawner.used_minutes.append(local_minute)
 	
 	var hour_hand_progress = float(exact_minute) / minutes_in_half_day
 	var minute_hand_progress = float(local_minute) / minutes_in_hour
