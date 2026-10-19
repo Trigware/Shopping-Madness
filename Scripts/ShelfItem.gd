@@ -10,7 +10,6 @@ var room_type: Inventory.RoomType = Inventory.RoomType.None
 var is_horizontal_shelf: bool = false
 var item_index: int = 0
 var item_type: Inventory.ItemType = Inventory.ItemType.None
-var type_already_assigned: bool = false
 
 const collider_scale_multiplier: float = 3
 const smaller_axis_collider_multiplier: float = 0.75
@@ -21,7 +20,7 @@ func _ready():
 		
 	# 1. Vybereme konkrétní předmět pro toto políčko poličky:
 	var current_tile_x: int = item_index % available_items_in_shelf.size()
-	if not type_already_assigned: item_type = available_items_in_shelf[current_tile_x]
+	item_type = available_items_in_shelf[current_tile_x]
 	
 	# 2. Nastavení textury podle toho, jestli jde o samostatný soubor, nebo starý spritesheet:
 	if Inventory.item_textures_map.has(item_type):
@@ -35,7 +34,6 @@ func _ready():
 		texture.texture = Inventory.room_textures_map[room_type]
 		texture.hframes = available_items_in_shelf.size()
 		texture.vframes = 1
-		prints(current_tile_x, Inventory.ItemType.find_key(item_type), item_index, available_items_in_shelf)
 		texture.frame_coords.x = current_tile_x
 	
 	# 3. Úprava kolizí, ať to odpovídá velikosti spritu

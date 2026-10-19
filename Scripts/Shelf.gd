@@ -59,7 +59,6 @@ func add_shelf_items(items_arr: Array = []):
 		shelf_item.is_horizontal_shelf = is_horizonzal
 		if i < mandatory_items.size():
 			shelf_item.item_type = mandatory_items[i]
-			shelf_item.type_already_assigned = true
 		
 		var current_direction: Vector2 = Vector2.RIGHT if is_horizonzal else Vector2.DOWN
 		var true_food_tile_size: float = ShelfGenerator.food_tile_size * shelf_item_scale
