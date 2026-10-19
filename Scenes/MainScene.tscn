@@ -25,4 +25,5 @@ z_index = 1
 [node name="Text System" parent="." unique_id=356215522 instance=ExtResource("6_y4jh7")]
 layer = 3
 
-[node name="Item Valid Info" parent="." unique_id=1816931995 instance=ExtResource("7_q68mp")]
+[node name="Item Valid Info" parent="." unique_id=1816931995 node_paths=PackedStringArray("player") instance=ExtResource("7_q68mp")]
+player = NodePath("../Player")

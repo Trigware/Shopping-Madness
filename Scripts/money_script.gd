@@ -10,9 +10,11 @@ func _ready() -> void:
 func update_ui(new_amount: int) -> void:
 	money_label.text = str(new_amount)
 
+const scale_multiplier: float = 1.5
+
 const default_window_size: Vector2 = Vector2(1152, 648)
 
 func _process(_delta: float):
 	var window_size: Vector2 = DisplayServer.window_get_size()
-	var size_increase: float = window_size.x / default_window_size.x
+	var size_increase: float = window_size.x / default_window_size.x * scale_multiplier
 	money_root.scale = Vector2.ONE * size_increase
