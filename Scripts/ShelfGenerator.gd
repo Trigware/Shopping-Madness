@@ -19,6 +19,7 @@ func _ready():
 
 func add_shelf(shelf_size: Vector2, shelf_pos: Vector2, items_in_shelf: int, is_horizontal: bool) -> Shelf:
 	var added_shelf: Shelf = UID.SCN_SHELF.instantiate()
+	print(UID.SCN_SHELF)
 	added_shelf.shelf_position = shelf_pos
 	added_shelf.shelf_size = shelf_size
 	added_shelf.shelf_room_type = current_room.room_manager.current_room.room_type
