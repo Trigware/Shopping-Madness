@@ -53,6 +53,7 @@ func _physics_process(delta: float) -> void:
 			interaction_area.monitoring = false
 			Collider = false
 				
-			if not Overlay.is_transition_locked: TextSystem.render_dialog_arr(npc_dialog)
+			
+			TextSystem.render_dialog_arr(npc_dialog)
 	else:
 		has_triggered_dialog = false

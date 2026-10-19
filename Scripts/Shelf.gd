@@ -18,6 +18,7 @@ var items_count_on_shelves: int = 0
 var is_horizonzal: bool = false
 
 const shelf_item_scale: float = 0.45
+var mandatory_items: Array = []
 
 func _ready():
 	shelf_texture.size = shelf_size
@@ -26,7 +27,20 @@ func _ready():
 	bounding_area.shape = collider_shape
 	bounding_area.position = shelf_size / 2
 	position = shelf_position
+	mandatory_items = get_mandatory_items_list()
 	add_shelf_items()
+
+@onready var room_manager = get_parent().get_parent().get_parent()
+@onready var grocery_list = room_manager.grocery_list
+
+func get_mandatory_items_list():
+	var result: Array = []
+	var items_in_room: Array = Inventory.available_foods_in_room_map[shelf_room_type]
+	for current_item: Inventory.ItemType in items_in_room:
+		var is_in_groceries: bool = grocery_list.groceries_map.has(current_item)
+		if is_in_groceries: result.push_back(current_item)
+	
+	return result
 
 func add_shelf_items(items_arr: Array = []):
 	var current_position: Vector2 = Vector2.ZERO
@@ -43,11 +57,15 @@ func add_shelf_items(items_arr: Array = []):
 		shelf_item.room_type = shelf_room_type
 		shelf_item.item_index = randi_range(0, available_items.size() - 1)
 		shelf_item.is_horizontal_shelf = is_horizonzal
+		if i < mandatory_items.size():
+			shelf_item.item_type = mandatory_items[i]
+			shelf_item.type_already_assigned = true
 		
 		var current_direction: Vector2 = Vector2.RIGHT if is_horizonzal else Vector2.DOWN
 		var true_food_tile_size: float = ShelfGenerator.food_tile_size * shelf_item_scale
 		current_position += true_food_tile_size * current_direction
 		items_root.add_child(shelf_item)
+		
 		if items_arr.size() > 0: shelf_item.item_type = items_arr[i]
 
 func get_shelf_info() -> ShelfInfo:

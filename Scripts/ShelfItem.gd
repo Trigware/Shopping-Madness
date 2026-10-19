@@ -10,20 +10,10 @@ var room_type: Inventory.RoomType = Inventory.RoomType.None
 var is_horizontal_shelf: bool = false
 var item_index: int = 0
 var item_type: Inventory.ItemType = Inventory.ItemType.None
-@onready var shelf = $"../.."
-@onready var current_room: Room = shelf.get_node("../../")
+var type_already_assigned: bool = false
 
 const collider_scale_multiplier: float = 3
 const smaller_axis_collider_multiplier: float = 0.75
-
-func get_grocery_list_nessesities():
-	var grocery_list = current_room.room_manager.grocery_list
-	var items_in_this_room: Array = Inventory.available_foods_in_room_map[room_type]
-	var required_in_this_room: Array = []
-	for available_item: Inventory.ItemType in items_in_this_room:
-		var is_in_groceries: bool = grocery_list.groceries_map.has(available_item)
-		if is_in_groceries: required_in_this_room.push_back(available_item)
-	return required_in_this_room
 
 func _ready():
 	if available_items_in_shelf.is_empty():
@@ -31,7 +21,7 @@ func _ready():
 		
 	# 1. Vybereme konkrétní předmět pro toto políčko poličky:
 	var current_tile_x: int = item_index % available_items_in_shelf.size()
-	item_type = available_items_in_shelf[current_tile_x]
+	if not type_already_assigned: item_type = available_items_in_shelf[current_tile_x]
 	
 	# 2. Nastavení textury podle toho, jestli jde o samostatný soubor, nebo starý spritesheet:
 	if Inventory.item_textures_map.has(item_type):
@@ -45,7 +35,7 @@ func _ready():
 		texture.texture = Inventory.room_textures_map[room_type]
 		texture.hframes = available_items_in_shelf.size()
 		texture.vframes = 1
-		texture.frame_coords.x = current_tile_x   
+		texture.frame_coords.x = current_tile_x
 	
 	# 3. Úprava kolizí, ať to odpovídá velikosti spritu
 	var shape_axis_index: int = 1 if is_horizontal_shelf else 0
@@ -67,6 +57,12 @@ func handle_pickup():
 		if is_player: does_player_overlap = true; break
 	if not does_player_overlap: return
 	
+	var item_value: int = Inventory.item_prices[item_type]
+	var total_money_count: int = GameManager.money
+	var can_buy: bool = total_money_count >= item_value
+	if not can_buy: return
+	
+	GameManager.remove_money(item_value)
 	Inventory.add_item(item_type, 1)
 	item_type = Inventory.ItemType.None
 	hide()

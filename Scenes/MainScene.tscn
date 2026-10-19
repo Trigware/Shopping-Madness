@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://7nvg0kvyancw" path="res://Scenes/Room.tscn" id="1_tr2i4"]
 [ext_resource type="PackedScene" uid="uid://dil1d0a3q828c" path="res://Scenes/GroceryList.tscn" id="3_nhkr4"]
 [ext_resource type="PackedScene" uid="uid://cqk0exxn8op0c" path="res://Scenes/TextSystem.tscn" id="6_y4jh7"]
+[ext_resource type="PackedScene" uid="uid://dxq24eaf5gh6g" path="res://Scenes/ItemValueInfo.tscn" id="7_q68mp"]
 
 [node name="Root" type="Node2D" unique_id=1297904708]
 script = ExtResource("1_qxria")
@@ -23,3 +24,5 @@ z_index = 1
 
 [node name="Text System" parent="." unique_id=356215522 instance=ExtResource("6_y4jh7")]
 layer = 3
+
+[node name="Item Valid Info" parent="." unique_id=1816931995 instance=ExtResource("7_q68mp")]

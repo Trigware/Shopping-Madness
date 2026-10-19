@@ -107,5 +107,3 @@ text = "Choice D"
 label_settings = SubResource("LabelSettings_e32vq")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Talk" type="AudioStreamPlayer" parent="." unique_id=448987738]
